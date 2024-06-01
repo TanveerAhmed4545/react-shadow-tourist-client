@@ -23,8 +23,40 @@ const Navbar = () => {
   }, []);
 
     const links = <>
-    <li><NavLink  to='/' className={'font-semibold '}>Home</NavLink></li>
-    <li><NavLink  to='/about' className={'font-semibold '}>About</NavLink></li>
+    {/* <li><NavLink  to='/' className={'font-semibold '}>Home</NavLink></li>
+    <li><NavLink  to='/about' className={'font-semibold '}>About</NavLink></li> */}
+    <li><NavLink  to='/'  className={({ isActive, isPending }) =>
+         isActive
+           ? "bg-none border bg-black text-white font-semibold border-black mr-3"
+           : isPending
+           ? "pending"
+           : "mr-3  font-semibold"
+       }>Home</NavLink></li>
+    <li><NavLink  to='/about'  className={({ isActive, isPending }) =>
+         isActive
+           ? "bg-none border bg-black text-white font-semibold border-black mr-3"
+           : isPending
+           ? "pending"
+           : "mr-3  font-semibold"
+       }>About</NavLink></li>
+
+    <>
+            <li><NavLink  to='/login'  className={({ isActive, isPending }) =>
+         isActive
+           ? "bg-none border bg-black text-white font-semibold border-black mr-3"
+           : isPending
+           ? "pending"
+           : "mr-3  font-semibold"
+       }>Login</NavLink></li>
+       {/* <li><NavLink  to='/register'  className={({ isActive, isPending }) =>
+         isActive
+           ? "bg-none border bg-[#959cef] text-white font-semibold border-[#959cef] mr-3"
+           : isPending
+           ? "pending"
+           : "mr-3  font-semibold"
+       }>Register</NavLink></li> */}
+            </>
+        
     </>
     return (
         <div className={`navbar ${scrolled ? 'bg-[#DEE3CA]' : 'bg-transparent '} fixed top-0 z-50 transition-colors duration-300`}>

@@ -1,6 +1,11 @@
+import { Helmet } from "react-helmet-async";
+
 const About = () => {
   return (
     <div className=" mb-5 lg:mb-10">
+      <Helmet>
+        <title>Shadow Tourist || About</title>
+      </Helmet>
       <div className="mb-5 lg:mb-10">
         <div
           className="hero  "
