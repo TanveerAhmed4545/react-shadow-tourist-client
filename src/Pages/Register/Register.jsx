@@ -7,12 +7,14 @@ import { updateProfile } from "firebase/auth";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoMdEye } from "react-icons/io";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const Register = () => {
      // show password
      const [showPassword,setShowPassword] = useState(false);
      const {createUser,setReload} = useAuth();
+     const axiosPublic = useAxiosPublic();
      const navigate = useNavigate();
      const {
          register,
@@ -23,7 +25,7 @@ const Register = () => {
        } = useForm()
      
        const onSubmit = (data) => {
-         // console.log(data)
+        
  
          if(data.password.length < 6){
              toast.warn("Password should be at least 6 characters or longer");
@@ -33,26 +35,40 @@ const Register = () => {
                return;
            }
    
-           //  console.log(data)
+           
             createUser(data.email,data.password)
-            .then(result =>{
-               // console.log(result.user);
-               result.user && toast.success("Successfully Register");
-   
+            .then(result =>{             
                updateProfile(result.user,{
                    displayName: data.name,
                    photoURL: data.photo
                })
                .then(()=>{
-                   console.log("update");
-                   setReload(true);
-                   reset();
+
+                // create user entry in the database
+
+                const userInfo = {
+                    name: data.name,
+                    email: data.email,
+                    role: 'tourist',
+                    status: 'Verified',
+                  }
+                  axiosPublic.post('/users',userInfo)
+                  .then(res => {
+                    if(res.data.insertedId){
+                      console.log('user added to database')
+                      toast.success("Successfully Register");
+                      setReload(true);
+                      reset();
+                      navigate('/');   
+                    }
+                  })
+                
                })
                .catch((error)=>{
                    console.log(error);
                })
  
-               navigate('/');
+               
    
             })
             .catch(error=>{

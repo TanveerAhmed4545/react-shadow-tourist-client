@@ -33,14 +33,14 @@ const Navbar = () => {
            ? "bg-none border bg-black text-white font-semibold border-black mr-3"
            : isPending
            ? "pending"
-           : "mr-3  font-semibold"
+           : "mr-3 text-white font-semibold"
        }>Home</NavLink></li>
     <li><NavLink  to='/about'  className={({ isActive, isPending }) =>
          isActive
            ? "bg-none border bg-black text-white font-semibold border-black mr-3"
            : isPending
            ? "pending"
-           : "mr-3  font-semibold"
+           : "mr-3 text-white font-semibold"
        }>About</NavLink></li>
 
     {
@@ -50,14 +50,14 @@ const Navbar = () => {
      ? "bg-none border bg-black text-white font-semibold border-black mr-3"
      : isPending
      ? "pending"
-     : "mr-3  font-semibold"
+     : "mr-3 text-white font-semibold"
  }>Login</NavLink></li>
  <li><NavLink  to='/register'  className={({ isActive, isPending }) =>
    isActive
      ? "bg-none border bg-black text-white font-semibold border-black mr-3"
      : isPending
      ? "pending"
-     : "mr-3  font-semibold"
+     : "mr-3 text-white font-semibold"
  }>Register</NavLink></li>
       </>
     }
@@ -129,9 +129,11 @@ const handleSignOut = () =>{
           <li><a className="justify-between">
               {user?.email}
             </a></li>
-            <li><a className="justify-between">
-              Dashboard
-            </a></li>
+            <Link to={'/dashboard'}>
+            <li > <p className="justify-between">Dashboard</p>
+              
+            </li>
+            </Link>
           <li><button className="btn btn-sm " onClick={handleSignOut}>Logout</button></li>
         </ul>
       </div>
