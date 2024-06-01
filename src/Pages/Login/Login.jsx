@@ -2,20 +2,17 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { FaEyeSlash, FaGoogle } from "react-icons/fa";
+import { FaEyeSlash} from "react-icons/fa";
 import { IoMdEye } from "react-icons/io";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 
 const Login = () => {
     const [showPassword,setShowPassword] = useState(false);
-
-    const {signIn,googleLogin} = useAuth();
-
-
+    const {signIn} = useAuth();
     const location = useLocation();
-    // console.log("loaction in the login page", location);
     const navigate = useNavigate();
 
 
@@ -45,19 +42,19 @@ const Login = () => {
 
     }
 
-    const handleSocialLogin = socialProvider =>{
-      socialProvider()
-      .then(result =>{
+    // const handleSocialLogin = socialProvider =>{
+    //   socialProvider()
+    //   .then(result =>{
 
-        result.user &&  toast.success("Login Successfully");
-        // social login navigate
-        navigate(location?.state ? location.state : '/');
-      })
-      .then(error =>{
-        // console.log(error);
-        error && toast.warn("Login Error");
-      })
-    }
+    //     result.user &&  toast.success("Login Successfully");
+    //     // social login navigate
+    //     navigate(location?.state ? location.state : '/');
+    //   })
+    //   .then(error =>{
+    //     // console.log(error);
+    //     error && toast.warn("Login Error");
+    //   })
+    // }
 
 
     return (
@@ -107,12 +104,7 @@ const Login = () => {
               <button type="submit" className="btn bg-[#85A1FF] text-white">Login</button>
             </div>
           </form>
-          <div className="px-8 pt-6">
-         <button onClick={() => handleSocialLogin(googleLogin)} className="btn bg-blue-600 border-none text-white w-full">
-            <FaGoogle></FaGoogle>
-              Google
-            </button>
-         </div>
+          <SocialLogin></SocialLogin>
           <div className="text-center py-5">
          <p>Do not have an account ? <Link className="text-black font-bold" to='/register'>Register</Link></p>
          </div>

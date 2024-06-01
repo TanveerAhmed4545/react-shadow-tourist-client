@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { AiOutlineBars } from "react-icons/ai";
-import { BsFillHouseAddFill } from "react-icons/bs";
+import { BsFillHouseAddFill, BsGraphUp } from "react-icons/bs";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { MdHomeWork } from "react-icons/md";
 import useAuth from "../../hooks/useAuth";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser, FaUsers } from "react-icons/fa";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -71,9 +70,25 @@ const Sidebar = () => {
 
             {/*  Menu Items */}
             <nav>
+
+              {/* Statistics */}
+              <NavLink
+                to='/dashboard'
+                end
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                  }`
+                }
+              >
+                <BsGraphUp className='w-5 h-5' />
+
+                <span className='mx-4 font-medium'>Statistics</span>
+              </NavLink>
+
               {/* Profile Menu */}
               <NavLink
-                to="/dashboard/profile"
+                to="admin-profile"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -87,7 +102,7 @@ const Sidebar = () => {
 
               {/* Add Room */}
               <NavLink
-                to="add-room"
+                to="add-package"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -96,20 +111,20 @@ const Sidebar = () => {
               >
                 <BsFillHouseAddFill className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Add Room</span>
+                <span className="mx-4 font-medium">Add Package</span>
               </NavLink>
               {/* My Listing */}
               <NavLink
-                to="my-listings"
+                to="manage-users"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
                   }`
                 }
               >
-                <MdHomeWork className="w-5 h-5" />
+                <FaUsers className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">My Listings</span>
+                <span className="mx-4 font-medium">Manage Users</span>
               </NavLink>
             </nav>
           </div>

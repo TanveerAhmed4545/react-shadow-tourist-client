@@ -8,6 +8,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { IoMdEye } from "react-icons/io";
 import { Helmet } from "react-helmet-async";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 
 const Register = () => {
@@ -136,6 +137,7 @@ const Register = () => {
               <button className="btn bg-[#85A1FF] text-white">Register</button>
             </div>
           </form>
+          <SocialLogin></SocialLogin>
           <div className="text-center py-5">
          <p>Already have an account ? <Link className="text-[#85A1FF] font-bold" to='/login'>Login</Link></p>
          </div>
