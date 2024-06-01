@@ -12,11 +12,13 @@ import ManageUser from "../Pages/Dashboard/Admin/ManageUser";
 import AddPackage from "../Pages/Dashboard/Admin/AddPackage";
 import AdminProfile from "../Pages/Dashboard/Admin/AdminProfile";
 import RequestToAdmin from "../Pages/Dashboard/Guide/RequestToAdmin";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

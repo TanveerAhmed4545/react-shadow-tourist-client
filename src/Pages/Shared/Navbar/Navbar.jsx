@@ -30,21 +30,21 @@ const Navbar = () => {
     <li><NavLink  to='/about' className={'font-semibold '}>About</NavLink></li> */}
     <li><NavLink  to='/'  className={({ isActive, isPending }) =>
          isActive
-           ? "bg-none border bg-black text-white font-semibold border-black mr-3"
+           ? "bg-none  bg-[#4692FF] border-none text-white font-semibold border-black mr-3"
            : isPending
            ? "pending"
            : "mr-3 text-white font-semibold"
        }>Home</NavLink></li>
     <li><NavLink  to='/about'  className={({ isActive, isPending }) =>
          isActive
-           ? "bg-none border bg-black text-white font-semibold border-black mr-3"
+           ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
            : isPending
            ? "pending"
            : "mr-3 text-white font-semibold"
        }>About Us</NavLink></li>
     <li><NavLink  to='/contact'  className={({ isActive, isPending }) =>
          isActive
-           ? "bg-none border bg-black text-white font-semibold border-black mr-3"
+           ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
            : isPending
            ? "pending"
            : "mr-3 text-white font-semibold"
@@ -54,14 +54,14 @@ const Navbar = () => {
        !user && <>
       <li><NavLink  to='/login'  className={({ isActive, isPending }) =>
    isActive
-     ? "bg-none border bg-black text-white font-semibold border-black mr-3"
+     ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
      : isPending
      ? "pending"
      : "mr-3 text-white font-semibold"
  }>Login</NavLink></li>
  <li><NavLink  to='/register'  className={({ isActive, isPending }) =>
    isActive
-     ? "bg-none border bg-black text-white font-semibold border-black mr-3"
+     ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
      : isPending
      ? "pending"
      : "mr-3 text-white font-semibold"
@@ -90,7 +90,7 @@ const handleSignOut = () =>{
 
 
     return (
-        <div className={`navbar ${scrolled ? 'bg-[#E3EEFF]' : 'bg-transparent '} fixed top-0 z-50 transition-colors duration-300`}>
+        <div className={`navbar ${scrolled ? 'bg-[#AACBFF]' : 'bg-transparent '} fixed top-0 z-50 transition-colors duration-300`}>
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost text-white lg:hidden">
