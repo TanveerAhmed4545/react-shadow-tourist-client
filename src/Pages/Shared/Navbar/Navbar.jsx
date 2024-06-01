@@ -1,9 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../../public/logo.png"
 import { useEffect, useState } from "react";
+import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
 
+  const { user,logOut } = useAuth();
     const [scrolled, setScrolled] = useState(false);
 
   const handleScroll = () => {
@@ -40,24 +43,45 @@ const Navbar = () => {
            : "mr-3  font-semibold"
        }>About</NavLink></li>
 
-    <>
-            <li><NavLink  to='/login'  className={({ isActive, isPending }) =>
-         isActive
-           ? "bg-none border bg-black text-white font-semibold border-black mr-3"
-           : isPending
-           ? "pending"
-           : "mr-3  font-semibold"
-       }>Login</NavLink></li>
-       {/* <li><NavLink  to='/register'  className={({ isActive, isPending }) =>
-         isActive
-           ? "bg-none border bg-[#959cef] text-white font-semibold border-[#959cef] mr-3"
-           : isPending
-           ? "pending"
-           : "mr-3  font-semibold"
-       }>Register</NavLink></li> */}
-            </>
+    {
+       !user && <>
+      <li><NavLink  to='/login'  className={({ isActive, isPending }) =>
+   isActive
+     ? "bg-none border bg-black text-white font-semibold border-black mr-3"
+     : isPending
+     ? "pending"
+     : "mr-3  font-semibold"
+ }>Login</NavLink></li>
+ {/* <li><NavLink  to='/register'  className={({ isActive, isPending }) =>
+   isActive
+     ? "bg-none border bg-[#959cef] text-white font-semibold border-[#959cef] mr-3"
+     : isPending
+     ? "pending"
+     : "mr-3  font-semibold"
+ }>Register</NavLink></li> */}
+      </>
+    }
         
     </>
+
+
+
+const handleSignOut = () =>{
+  
+  logOut()
+  .then(result =>{
+    console.log(result);
+     toast.success('Logout Completed');
+  })
+  .catch(error =>{
+    console.log(error);
+      toast.warn("Error");
+  })
+
+}
+
+
+
     return (
         <div className={`navbar ${scrolled ? 'bg-[#DEE3CA]' : 'bg-transparent '} fixed top-0 z-50 transition-colors duration-300`}>
         <div className="navbar-start">
@@ -88,28 +112,30 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-        <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+       {
+        user &&  <div className="dropdown dropdown-end">
+        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">
+            <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+          </div>
         </div>
-      </div>
-      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li>
-          <a className="justify-between">
-            User Name
-            
-          </a>
-        </li>
-        <li><a className="justify-between">
-            User Email
-          </a></li>
+        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+            <a className="justify-between">
+              {user?.displayName}
+              
+            </a>
+          </li>
           <li><a className="justify-between">
-            Dashboard
-          </a></li>
-        <li><a>Logout</a></li>
-      </ul>
-    </div>
+              {user?.email}
+            </a></li>
+            <li><a className="justify-between">
+              Dashboard
+            </a></li>
+          <li><button className="btn btn-sm " onClick={handleSignOut}>Logout</button></li>
+        </ul>
+      </div>
+       }
          
         </div>
       </div>
