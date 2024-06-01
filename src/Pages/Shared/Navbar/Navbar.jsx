@@ -41,7 +41,14 @@ const Navbar = () => {
            : isPending
            ? "pending"
            : "mr-3 text-white font-semibold"
-       }>About</NavLink></li>
+       }>About Us</NavLink></li>
+    <li><NavLink  to='/contact'  className={({ isActive, isPending }) =>
+         isActive
+           ? "bg-none border bg-black text-white font-semibold border-black mr-3"
+           : isPending
+           ? "pending"
+           : "mr-3 text-white font-semibold"
+       }>Contact Us</NavLink></li>
 
     {
        !user && <>
@@ -83,7 +90,7 @@ const handleSignOut = () =>{
 
 
     return (
-        <div className={`navbar ${scrolled ? 'bg-[#DEE3CA]' : 'bg-transparent '} fixed top-0 z-50 transition-colors duration-300`}>
+        <div className={`navbar ${scrolled ? 'bg-[#E3EEFF]' : 'bg-transparent '} fixed top-0 z-50 transition-colors duration-300`}>
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost text-white lg:hidden">

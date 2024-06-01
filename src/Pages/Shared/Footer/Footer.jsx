@@ -6,7 +6,7 @@ import { FaFacebook } from 'react-icons/fa6';
 const Footer = () => {
     return (
         <div className="  bg-base-300">
-          <footer className="footer p-10 bg-base-300 text-base-content">
+          <footer className="footer p-10 bg-[#F9FCFF] text-base-content">
           <aside>
     <img className="size-12" src={logo} alt="" />
     <p  className="font-semibold">Shadow Tourist Ltd. <br/>Providing reliable Tourist Guide since 2010</p>
@@ -33,7 +33,7 @@ const Footer = () => {
   </nav> 
   
 </footer>
-<footer className="footer px-10 py-4 border-t bg-base-300 text-base-content border-base-300 ">
+<footer className="footer px-10 py-4 border-t bg-[#F9FCFF] text-base-content border-base-300 ">
   <aside className="items-center grid-flow-col ">
     <img className="size-5" src={logo} />
     <p  className="font-semibold">Copyright © 2024 - All right reserved</p>
