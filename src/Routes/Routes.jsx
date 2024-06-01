@@ -10,6 +10,7 @@ import Statistics from "../Pages/Dashboard/Common/Statistics";
 import ManageUser from "../Pages/Dashboard/Admin/ManageUser";
 import AddPackage from "../Pages/Dashboard/Admin/AddPackage";
 import AdminProfile from "../Pages/Dashboard/Admin/AdminProfile";
+import RequestToAdmin from "../Pages/Dashboard/Guide/RequestToAdmin";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,13 @@ export const router = createBrowserRouter([
       {
         path: 'manage-users',
         element: <ManageUser></ManageUser>
+      }
+      ,
+      {
+        path: 'request-to-admin',
+        element: <PrivateRoute>
+          <RequestToAdmin></RequestToAdmin>
+        </PrivateRoute>
       }
     ],
   },

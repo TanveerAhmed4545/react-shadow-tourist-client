@@ -1,6 +1,6 @@
 
 
-const AdminProfile = () => {
+const AdminProfile = () => {  
     return (
         <div>
             <h2>Admin Profile</h2>
