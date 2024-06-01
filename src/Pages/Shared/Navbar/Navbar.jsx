@@ -3,7 +3,7 @@ import logo from "../../../../public/logo.png"
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
-
+import demoUserPic from "../../../assets/demoUser.png";
 const Navbar = () => {
 
   const { user,logOut } = useAuth();
@@ -52,13 +52,13 @@ const Navbar = () => {
      ? "pending"
      : "mr-3  font-semibold"
  }>Login</NavLink></li>
- {/* <li><NavLink  to='/register'  className={({ isActive, isPending }) =>
+ <li><NavLink  to='/register'  className={({ isActive, isPending }) =>
    isActive
-     ? "bg-none border bg-[#959cef] text-white font-semibold border-[#959cef] mr-3"
+     ? "bg-none border bg-black text-white font-semibold border-black mr-3"
      : isPending
      ? "pending"
      : "mr-3  font-semibold"
- }>Register</NavLink></li> */}
+ }>Register</NavLink></li>
       </>
     }
         
@@ -116,7 +116,7 @@ const handleSignOut = () =>{
         user &&  <div className="dropdown dropdown-end">
         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
-            <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+            <img alt="Tailwind CSS Navbar component" src={user?.photoURL ? user.photoURL : demoUserPic} />
           </div>
         </div>
         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

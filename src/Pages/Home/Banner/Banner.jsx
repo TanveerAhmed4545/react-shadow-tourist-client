@@ -6,7 +6,7 @@ const Banner = () => {
     <div className="text-center">
       <Carousel
         showStatus={false}
-        showThumbs={true}
+        showThumbs={false}
         infiniteLoop={true}
         autoPlay={true}
         interval={3000}

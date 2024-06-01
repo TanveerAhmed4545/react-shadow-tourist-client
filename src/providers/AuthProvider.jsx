@@ -12,7 +12,7 @@ const AuthProvider = ({children}) => {
    
     const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-//   const [reload, setReload] = useState(false);
+  const [reload, setReload] = useState(false);
 
     // social provider
    const googleProvider = new GoogleAuthProvider();
@@ -57,7 +57,7 @@ const AuthProvider = ({children}) => {
     return () => {
         return unSubscribe();
     }
-   },[])
+   },[reload])
 
 
 
@@ -70,7 +70,8 @@ const AuthProvider = ({children}) => {
         logOut,
         loading,
          setLoading,
-         updateUserProfile
+         updateUserProfile,
+         setReload
 
     }
     return (
