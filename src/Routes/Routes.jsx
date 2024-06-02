@@ -14,6 +14,7 @@ import AdminProfile from "../Pages/Dashboard/Admin/AdminProfile";
 import RequestToAdmin from "../Pages/Dashboard/Guide/RequestToAdmin";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AdminRoute from "./AdminRoute";
+import PackageDetails from "../Pages/PackageDetails/PackageDetails";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+      {
+        path: "/package-details/:id",
+        element: <PackageDetails></PackageDetails>,
+      }
     ],
   },
   {

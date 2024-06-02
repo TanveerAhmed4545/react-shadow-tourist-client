@@ -1,11 +1,62 @@
 import { BsCurrencyDollar } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa6";
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
+// eslint-disable-next-line react/prop-types
 const PackagesCard = ({pack,refetch}) => {
+    const {user} = useAuth();
+    const axiosPublic = useAxiosPublic();
+
     // eslint-disable-next-line react/prop-types
     const {_id,images,tourType,tripTitle,price,wishlist} = pack;
     
     const firstImage = images[0];
+
+    const handleWishlist = async(e) =>{
+        e.preventDefault();
+        console.log("click");
+
+        const email = user?.email;
+        const name = user?.displayName;
+        const wishlist = true;
+        const packageId = _id;
+
+        const wishData ={
+            email,
+            name,
+            wishlist,
+            packageId,
+            tourType,
+            price,
+            tripTitle
+        }
+        const packData ={
+
+            
+            wishlist: true,
+           
+        }
+
+        try{
+            await axiosPublic.patch(`/wishlist-add/${_id}`,packData)
+            refetch();
+            const wishRes =  await axiosPublic.post('/wishlist-post',wishData);
+            console.log(wishRes.data);
+            
+        if(wishRes.data.insertedId){
+            toast.success("Added to WishList");
+        }
+        }catch (err) {
+            console.log(err)
+       }
+
+
+    }
+
+
   return (
     <div>
       <div className="card  p-5 bg-base-100 rounded-md border-[#929c96] border-2 hover:border-none hover:shadow-xl hover:shadow-[#a3b3ab] transition duration-300 ease-in-out">
@@ -16,9 +67,16 @@ const PackagesCard = ({pack,refetch}) => {
               src={firstImage}
             />
           </figure>
-          <button className="absolute top-3 right-3 rounded-md   px-3 py-2 text-white  bg-[#94b0a4]">
-            {}
+          <NavLink state={location.pathname}  to={!user && '/login'}>
+
+          <button
+          disabled ={wishlist}
+          onClick={handleWishlist}
+          className="absolute top-3 right-3  text-3xl    text-white  ">
+          <FaHeart  className={`${wishlist ? 'text-red-600 ' : ''}`} />
           </button>
+          </NavLink>
+          
         </div>
         <div className="mt-3">
           <h2 className="card-title ">{tripTitle}</h2>
@@ -33,7 +91,7 @@ const PackagesCard = ({pack,refetch}) => {
           </div>
 
           <div className="card-actions ">
-            <Link to={""}>
+            <Link to={`/package-details/${_id}`}>
               <button className="btn rounded-md w-full text-white border-none bg-[#80938b]">
                 View Package
               </button>
