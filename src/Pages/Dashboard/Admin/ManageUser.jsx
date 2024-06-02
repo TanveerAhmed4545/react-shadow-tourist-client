@@ -1,20 +1,29 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-
+import { useState } from "react";
+import Select from 'react-select';
 const ManageUser = () => {
+  const [search, setSearch] = useState('');
+  const [role, setRole] = useState(null);
+  console.log(role,search)
   const axiosSecure = useAxiosSecure();
   // const {user} = useAuth();
 
   // fetch data
   const {
     data: users = [],
-    isLoading,
+    
     refetch,
   } = useQuery({
-    queryKey: ["manageUsers"],
+    queryKey: ["manageUsers", search, role],
     queryFn: async () => {
-      const { data } = await axiosSecure.get("/users");
+      const { data } = await axiosSecure.get("/users" ,{
+        params: {
+          search,
+          role: role ? role.value : ''
+        }
+      });
       return data;
     },
   });
@@ -41,12 +50,34 @@ const ManageUser = () => {
     updateUserRole.mutate({ email, role, status });
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  
+
+  const roleOptions = [
+    { value: '', label: 'All' },
+    { value: 'tourist', label: 'Tourist' },
+    { value: 'guide', label: 'Guide' },
+    { value: 'admin', label: 'Admin' },
+  ];
+
+ 
 
   return (
     <div>
+
+      <div className="my-5">
+        <input
+          className="input input-bordered mb-3 w-full"
+          type="text"
+          placeholder="Search by name or email"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <Select
+          options={roleOptions}
+          onChange={setRole}
+          placeholder="Filter by role"
+        />
+      </div>
      
       <div className="overflow-x-auto">
         <table className="table">
