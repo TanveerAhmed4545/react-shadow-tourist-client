@@ -1,9 +1,11 @@
-import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 const AddPackage = () => {
-    
+  
+  const axiosSecure = useAxiosSecure();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -28,13 +30,7 @@ const AddPackage = () => {
         ];
 
         
-        // console.log('Trip Title:', tripTitle);
-        // console.log('Tour Type:', tourType);
-        // console.log('Price:', price);
-        // console.log('Description:', description);
-        // console.log('Images:', images);
-        // console.log('Tour Plan:', tourPlan);
-        // console.log('wishlist:', wishlist);
+        
         
         const packageItems = {
             tripTitle,
@@ -47,7 +43,7 @@ const AddPackage = () => {
         }
         console.table(packageItems);
 
-        const packRes = await axios.post('http://localhost:5000/package',packageItems)
+        const packRes = await axiosSecure.post('/package',packageItems)
         console.log(packRes.data);
         if(packRes.data.insertedId){
             // show success popup

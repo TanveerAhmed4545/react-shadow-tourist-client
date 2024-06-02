@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageUser = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   // const {user} = useAuth();
 
   // fetch data
@@ -14,7 +14,7 @@ const ManageUser = () => {
   } = useQuery({
     queryKey: ["manageUsers"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get("/users");
+      const { data } = await axiosSecure.get("/users");
       return data;
     },
   });
@@ -22,7 +22,7 @@ const ManageUser = () => {
 
   const updateUserRole = useMutation({
     mutationFn: async ({ email, role, status }) => {
-      const { data } = await axiosPublic.patch(`/users/update/${email}`, {
+      const { data } = await axiosSecure.patch(`/users/update/${email}`, {
         role,
         status,
       });
