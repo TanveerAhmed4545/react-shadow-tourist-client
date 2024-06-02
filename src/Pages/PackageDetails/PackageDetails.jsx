@@ -26,12 +26,12 @@ const PackageDetails = () => {
       return res.data;
     },
   });
-  console.log(details);
+//   console.log(details);
   const firstImage = details?.images?.[0];
   const twoImage = details?.images?.[1];
   const threeImage = details?.images?.[2];
   const allPic = [twoImage, threeImage];
-  console.log(allPic);
+//   console.log(allPic);
 
   const handleBookNow = (event) => {
     event.preventDefault();

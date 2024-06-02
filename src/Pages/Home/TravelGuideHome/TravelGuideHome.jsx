@@ -1,11 +1,9 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import usePackage from '../../../hooks/usePackage';
 import OurPackages from '../OurPackages/OurPackages';
 
 const TravelGuideHome = () => {
-    const [packages] = usePackage();
-    console.log(packages);
+    
     return (
         <div className='my-10'>
             <Tabs className={''}>

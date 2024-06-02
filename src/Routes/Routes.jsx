@@ -15,6 +15,7 @@ import RequestToAdmin from "../Pages/Dashboard/Guide/RequestToAdmin";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AdminRoute from "./AdminRoute";
 import PackageDetails from "../Pages/PackageDetails/PackageDetails";
+import MyWishList from "../Pages/Dashboard/Tourist/MyWishList";
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +45,9 @@ export const router = createBrowserRouter([
       },
       {
         path: "/package-details/:id",
-        element: <PackageDetails></PackageDetails>,
+        element: <PrivateRoute>
+          <PackageDetails></PackageDetails>
+        </PrivateRoute>,
       }
     ],
   },
@@ -91,6 +94,12 @@ export const router = createBrowserRouter([
         path: 'request-to-admin',
         element: <PrivateRoute>
           <RequestToAdmin></RequestToAdmin>
+        </PrivateRoute>
+      },
+      {
+        path: 'my-wishlist',
+        element: <PrivateRoute>
+          <MyWishList></MyWishList>
         </PrivateRoute>
       }
     ],
