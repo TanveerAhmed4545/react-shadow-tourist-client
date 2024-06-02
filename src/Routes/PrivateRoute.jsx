@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-
+import Lottie from "lottie-react";
+import loaderAnimation from "../assets/loader.json";
 
 
 
@@ -11,7 +12,9 @@ const PrivateRoute = ({ children }) => {
   
   
     if(loading){
-      return <span className="loading loading-spinner loading-lg"></span>
+      return <div className="flex justify-center items-center ">
+      <Lottie className="w-1/3" animationData={loaderAnimation} loop={true} />
+    </div>
     }
   
     if (user) {

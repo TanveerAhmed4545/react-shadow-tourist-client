@@ -13,6 +13,7 @@ import AddPackage from "../Pages/Dashboard/Admin/AddPackage";
 import AdminProfile from "../Pages/Dashboard/Admin/AdminProfile";
 import RequestToAdmin from "../Pages/Dashboard/Guide/RequestToAdmin";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -52,19 +53,33 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Statistics></Statistics>
+        element: <PrivateRoute>
+          <Statistics></Statistics>
+        </PrivateRoute>
       },
       {
         path: 'admin-profile',
-        element: <AdminProfile></AdminProfile>
+        element: <PrivateRoute>
+          <AdminRoute>
+          <AdminProfile></AdminProfile>
+        </AdminRoute>
+        </PrivateRoute>
       },
       {
         path: 'add-package',
-        element: <AddPackage></AddPackage>
+        element: <PrivateRoute>
+          <AdminRoute>
+          <AddPackage></AddPackage>
+        </AdminRoute>
+        </PrivateRoute>
       },
       {
         path: 'manage-users',
-        element: <ManageUser></ManageUser>
+        element: <PrivateRoute>
+          <AdminRoute>
+          <ManageUser></ManageUser>
+        </AdminRoute>
+        </PrivateRoute>
       }
       ,
       {
