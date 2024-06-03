@@ -1,6 +1,7 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import OurPackages from '../OurPackages/OurPackages';
+import OurTourGuide from '../OurTourGuide/OurTourGuide';
 
 const TravelGuideHome = () => {
     
@@ -34,7 +35,7 @@ const TravelGuideHome = () => {
       <OurPackages></OurPackages>
     </TabPanel>
     <TabPanel>
-      <h2>Any content 3</h2>
+      <OurTourGuide></OurTourGuide>
     </TabPanel>
   </Tabs>
         </div>

@@ -17,6 +17,7 @@ import AdminRoute from "./AdminRoute";
 import PackageDetails from "../Pages/PackageDetails/PackageDetails";
 import MyWishList from "../Pages/Dashboard/Tourist/MyWishList";
 import AllPackages from "../Pages/AllPackages/AllPackages";
+import TourGuideProfile from "../Pages/TourGuideProfile/TourGuideProfile";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "/allPackages",
         element: <AllPackages></AllPackages>,
+      },
+      {
+        path: "/guide-Profile/:id",
+        element: <TourGuideProfile></TourGuideProfile>,
       },
       {
         path: "/login",

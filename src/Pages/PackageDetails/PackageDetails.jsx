@@ -9,6 +9,8 @@ import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
 // import useAuth from "../../hooks/useAuth";
 import "react-datepicker/dist/react-datepicker.css";
+
+
 const PackageDetails = () => {
   const [tourDate, setTourDate] = useState(new Date());
   //   const { user } = useAuth();
