@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 
 const RequestToAdmin = () => {
@@ -31,6 +32,9 @@ const RequestToAdmin = () => {
 
     return (
         <div>
+          <Helmet>
+        <title>Shadow Tourist || Request To Admin</title>
+      </Helmet>
              <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="max-w-md w-full mx-auto p-6">
         <div className="bg-white rounded-2xl shadow-xl p-8">

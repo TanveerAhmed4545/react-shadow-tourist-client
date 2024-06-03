@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import Select from 'react-select';
+import { Helmet } from "react-helmet-async";
 const ManageUser = () => {
   const [search, setSearch] = useState('');
   const [role, setRole] = useState(null);
@@ -63,6 +64,9 @@ const ManageUser = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Shadow Tourist || Manage User</title>
+      </Helmet>
 
       <div className="my-5">
         <input

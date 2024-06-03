@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const AddPackage = () => {
@@ -62,6 +63,9 @@ const AddPackage = () => {
     };
     return (
         <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+          <Helmet>
+        <title>Shadow Tourist || Add Package</title>
+      </Helmet>
       <div className="container mx-auto p-6">
         <h2 className="text-3xl font-bold mb-6 text-center">Add Package</h2>
         <div className="bg-white p-8 rounded-lg shadow-lg  mx-auto">
