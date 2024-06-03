@@ -5,8 +5,13 @@ import Lottie from "lottie-react";
 import loaderAnimation from "../../assets/loader.json";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useReviews from "../../hooks/useReviews";
+import ReviewCard from "./ReviewCard";
 
 const TourGuideProfile = () => {
+
+   const [reviews,,refetch] = useReviews(); 
+//    console.log(reviews);
   const { id } = useParams();
   //   console.log(id);
   const {user} = useAuth();
@@ -66,6 +71,7 @@ const TourGuideProfile = () => {
                 icon: "success",
                 confirmButtonText: "Done",
               });
+              refetch();
                // Reset the form after successful submission
               form.reset();
          }
@@ -87,7 +93,8 @@ const TourGuideProfile = () => {
 
 
 
-
+   const reviewData = reviews.filter(item => item.guideId === _id);
+//    console.log(reviewData);
 
   if (loading || !guideDetails)
     return (
@@ -131,6 +138,21 @@ const TourGuideProfile = () => {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className="mx-5 md:mx-20 lg:mx-32">
+        <div className="text-center py-8 px-5">
+            <h2 className="text-2xl lg:text-4xl font-extrabold">All Reviews</h2>
+        </div>
+      {
+    reviewData.length > 0 ? (
+        <div>
+            {reviewData.map(item => <ReviewCard key={item._id} item={item}></ReviewCard>)}
+        </div>
+    ) : (
+        <p className="font-semibold text-center text-lg"> Please Login First to add Some beautiful Reviews</p>
+    )
+}
       </div>
 
       {/* form  */}
