@@ -68,7 +68,7 @@ const PackageDetails = () => {
 
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "You want to book this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -85,7 +85,7 @@ const PackageDetails = () => {
               text: "Your Booking Succeeded.",
               icon: "success"
             });
-            navigate('/dashboard')
+            navigate('/dashboard/my-booking')
           }
 
    
@@ -129,14 +129,14 @@ const PackageDetails = () => {
           </h1>
         </div>
       </div>
-      <div className="card rounded-none   hover:shadow-2xl hover:shadow-[#707178]   my-5 lg:my-10 mx-5">
+      <div className="card rounded-md   hover:shadow-2xl hover:shadow-[#707178]   my-5 lg:my-10 mx-5">
         <div className="">
           <figure>
-            <img className=" lg:h-screen lg:w-full" src={firstImage} />
+            <img className=" lg:h-screen rounded-md lg:w-full" src={firstImage} />
           </figure>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
-          {allPic && allPic.map((pic, idx) => <img className="h-auto md:h-64  lg:max-h-80 w-full" key={idx} src={pic} />)}
+          {allPic && allPic.map((pic, idx) => <img className="h-auto md:h-64 rounded-md  lg:max-h-80 w-full" key={idx} src={pic} />)}
         </div>
         <div className="p-5 lg:p-10 space-y-5 ">
           <p className="text-xl font-semibold">
@@ -169,7 +169,7 @@ const PackageDetails = () => {
           </p>
           <div>
             {details?.tourPlan?.map((day, index) => (
-              <div key={index} className="collapse collapse-plus bg-base-200">
+              <div key={index} className="mb-1 collapse collapse-plus bg-base-200">
                 <input
                   type="radio"
                   name="my-accordion-3"
@@ -190,7 +190,7 @@ const PackageDetails = () => {
       {/* form */}
 
       <div className="p-5 lg:p-10 bg-gray-100 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold text-center text-blue-600 mb-5">
+        <h2 className="text-2xl md:text-4xl  font-bold text-center text-blue-600 mb-5">
           Book Now{" "}
         </h2>
         <form onSubmit={handleBookNow}>

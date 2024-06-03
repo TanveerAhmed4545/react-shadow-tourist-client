@@ -42,7 +42,7 @@ const MyWishList = () => {
                     const { data } = await axiosPublic.delete(`/wishlist-delete/${id}`);
                    
   
-                    //  booking  deleted
+                    //  Wishlist  deleted
                     if (data.deletedCount > 0) {
                         Swal.fire({
                             title: "Deleted!",
@@ -99,11 +99,11 @@ const MyWishList = () => {
        <td>
            <button
            onClick={()=>handleDelete(wish._id,wish.packageId)}
-           className="btn bg-red-400">Delete</button>
+           className="btn bg-red-400 text-white">Delete</button>
        </td>
        <td>
        <Link to={`/package-details/${wish.packageId}`}>
-       <button className="btn bg-blue-500">View Package</button>
+       <button className="btn bg-blue-500 text-white">View Package</button>
        </Link>
        </td>
      </tr>) )
