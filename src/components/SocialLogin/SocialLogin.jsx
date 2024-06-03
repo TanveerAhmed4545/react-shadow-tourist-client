@@ -27,7 +27,8 @@ const SocialLogin = () => {
             .then(res =>{
                 console.log(res.data);
                 toast.success("Login Successfully");
-                navigate(location?.state ? location.state : '/');
+                const redirectPath = location.state?.from?.pathname || '/';
+                navigate(redirectPath);
                 
             } )
         })

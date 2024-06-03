@@ -7,20 +7,23 @@ import Lottie from "lottie-react";
 import loaderAnimation from "../../assets/loader.json";
 import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
-// import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import "react-datepicker/dist/react-datepicker.css";
+import useGuide from "../../hooks/useGuide";
+import Swal from "sweetalert2";
 
 
 const PackageDetails = () => {
   const [tourDate, setTourDate] = useState(new Date());
-  //   const { user } = useAuth();
+    const { user } = useAuth();
   const { id } = useParams();
+  const [guides] = useGuide();
 
   const axiosPublic = useAxiosPublic();
   const {
     data: details = {},
     isPending: loading,
-    refetch,
+    
   } = useQuery({
     queryKey: ["packagesDetails"],
     queryFn: async () => {
@@ -35,9 +38,69 @@ const PackageDetails = () => {
   const allPic = [twoImage, threeImage];
 //   console.log(allPic);
 
-  const handleBookNow = (event) => {
+  const handleBookNow = async(event) => {
     event.preventDefault();
     // Logic to handle booking
+    
+    const form = event.target;
+    const tourGuideName = form.elements.tourGuideName.value;
+    const packageName = details?.tripTitle;
+    const name = user?.displayName;
+    const email = user?.email;
+    const image = user?.photoURL;
+    const price = details?.price;
+    const date = tourDate;
+    const status = "In Review";
+
+    const bookingData ={
+      tourGuideName,
+      packageName,
+      name,
+      email,
+      image,
+      price,
+      date,
+      status
+    }
+
+    // console.log(bookingData);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Book it!"
+    }).then( async (result) => {
+      if (result.isConfirmed) {
+        try{
+          const bookRes = await axiosPublic.post('/booking-post',bookingData)
+          // console.log(bookRes.data);
+          if(bookRes.data.insertedId){
+            Swal.fire({
+              title: "Booked!",
+              text: "Your Booking Succeeded.",
+              icon: "success"
+            });
+          }
+
+   
+        
+
+       
+     }catch (err) {
+          console.log(err)
+     }
+
+        
+      }
+    });
+
+
+
+
   };
 
   if (loading || !details)
@@ -138,6 +201,8 @@ const PackageDetails = () => {
                 type="text"
                 placeholder="Type here"
                 className="input input-bordered w-full "
+                value={details?.tripTitle || ''} 
+                readOnly
               />
             </div>
             <div>
@@ -146,6 +211,8 @@ const PackageDetails = () => {
                 type="text"
                 placeholder="Type here"
                 className="input input-bordered w-full "
+                value={user?.displayName|| ''} 
+                readOnly
               />
             </div>
             <div>
@@ -154,6 +221,8 @@ const PackageDetails = () => {
                 type="text"
                 placeholder="Type here"
                 className="input input-bordered w-full "
+                value={user?.email|| ''} 
+                readOnly
               />
             </div>
             <div>
@@ -162,27 +231,37 @@ const PackageDetails = () => {
                 type="text"
                 placeholder="Type here"
                 className="input input-bordered w-full "
+                value={details?.price || ''} 
+                readOnly
               />
             </div>
             <div>
-              <label className="block mb-2 font-semibold">Tour Date:</label>
+              <label className="block mb-2 font-semibold">Tourist Image Url:</label>
+              <input
+                type="text"
+                placeholder="Type here"
+                className="input input-bordered w-full "
+                value={user?.photoURL|| ''} 
+                readOnly
+              />
+            </div>
+            <div>
+              <label className="block  mb-2 font-semibold">Tour Date:</label>
               <ReactDatePicker
                 selected={tourDate}
                 onChange={(date) => setTourDate(date)}
-                className="input-field "
+                className="input-field input input-bordered w-full"
               />
             </div>
             <div>
               <label className="block mb-2 font-semibold">
                 Tour Guide Name:
               </label>
-              <select className="select  w-full ">
-                <option disabled defaultValue>
-                  Select Guide
-                </option>
-                <option>Svelte</option>
-                <option>Vue</option>
-                <option>React</option>
+              <select name="tourGuideName" className="select  w-full ">
+                
+                {guides.map(guide => (
+                <option key={guide._id} value={guide.name}>{guide.name}</option>
+              ))}
               </select>
             </div>
           </div>
