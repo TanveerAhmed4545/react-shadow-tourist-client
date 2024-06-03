@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { BsCurrencyDollar } from "react-icons/bs";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../assets/loader.json";
@@ -18,6 +18,7 @@ const PackageDetails = () => {
     const { user } = useAuth();
   const { id } = useParams();
   const [guides] = useGuide();
+  const navigate = useNavigate();
 
   const axiosPublic = useAxiosPublic();
   const {
@@ -84,6 +85,7 @@ const PackageDetails = () => {
               text: "Your Booking Succeeded.",
               icon: "success"
             });
+            navigate('/dashboard')
           }
 
    

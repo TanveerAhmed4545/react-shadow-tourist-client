@@ -83,7 +83,7 @@ const ManageUser = () => {
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="bg-[#e5ebee]">
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
@@ -96,7 +96,7 @@ const ManageUser = () => {
           <tbody>
             {/* row 1 */}
             {users.map((item, idx) => (
-              <tr key={idx} className="bg-base-200">
+              <tr key={idx} className=" hover">
                 <th>{idx + 1}</th>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
@@ -104,7 +104,7 @@ const ManageUser = () => {
                 <td>{item.status}</td>
                 <td>
                   <button
-                  className="btn"
+                  className="btn bg-teal-400 text-white"
                     onClick={() =>
                       handleRoleChange(item.email, "guide", "Verified")
                     }
@@ -115,7 +115,7 @@ const ManageUser = () => {
                 </td>
                 <td>
                   <button
-                  className="btn"
+                  className="btn bg-emerald-400 text-white"
                     onClick={() =>
                       handleRoleChange(item.email, "admin", "Verified")
                     }
