@@ -69,7 +69,7 @@ const PackageDetails = () => {
           </figure>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
-          {allPic && allPic.map((pic, idx) => <img className="md:max-h-64  lg:max-h-96 w-full" key={idx} src={pic} />)}
+          {allPic && allPic.map((pic, idx) => <img className="h-auto md:h-64  lg:max-h-80 w-full" key={idx} src={pic} />)}
         </div>
         <div className="p-5 lg:p-10 space-y-5 ">
           <p className="text-xl font-semibold">

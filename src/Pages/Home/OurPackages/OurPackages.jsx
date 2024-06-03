@@ -2,6 +2,7 @@ import Lottie from "lottie-react";
 import usePackage from "../../../hooks/usePackage";
 import PackagesCard from "./PackagesCard";
 import loaderAnimation from "../../../assets/loader.json";
+import { Link } from "react-router-dom";
 
 
 const OurPackages = () => {
@@ -27,6 +28,10 @@ const OurPackages = () => {
                        }  
                 </div>
         </div>
+     <div className="my-4 text-center">
+      <Link to={'/allPackages'}><button className="btn bg-[#4692ff] text-white">All Packages </button></Link>
+      
+      </div>   
         </div>
     );
 };

@@ -16,6 +16,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AdminRoute from "./AdminRoute";
 import PackageDetails from "../Pages/PackageDetails/PackageDetails";
 import MyWishList from "../Pages/Dashboard/Tourist/MyWishList";
+import AllPackages from "../Pages/AllPackages/AllPackages";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact></Contact>,
+      },
+      {
+        path: "/allPackages",
+        element: <AllPackages></AllPackages>,
       },
       {
         path: "/login",

@@ -17,7 +17,7 @@ const PackagesCard = ({pack,refetch}) => {
 
     const handleWishlist = async(e) =>{
         e.preventDefault();
-        console.log("click");
+        // console.log("click");
 
         const email = user?.email;
         const name = user?.displayName;
