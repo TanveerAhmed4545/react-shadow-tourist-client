@@ -1,7 +1,67 @@
+import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const GuideProfile = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+const handleGuide = async(e) =>{
+  e.preventDefault();
+  // Logic to handle booking
+  
+  const form = e.target;
+  const education = form.education.value;
+  const workExperience = form.work.value;
+  const phone = form.phone.value;
+  const skillOne = form.skillOne.value;
+  const skillTwo = form.skillTwo.value;
+  const skillThree = form.skillThree.value;
+  const skills = [
+    skillOne,
+    skillTwo,
+    skillThree
+  ]
+
+  const name = user?.displayName;
+  const profilePicture = user?.photoURL;
+  const email = user?.email;
+
+  const guideData = {
+    name,
+    email,
+    profilePicture,
+    workExperience,
+    phone,
+    education,
+    skills
+  }
+
+     console.log("click");
+     console.table(guideData);
+
+     const guideRes = await axiosSecure.post('/guide',guideData)
+     console.log(guideRes.data);
+     if(guideRes.data.insertedId){
+         // show success popup
+        
+         Swal.fire({
+             position: "center",
+             icon: "success",
+             title: "Guide Profile to Database",
+             showConfirmButton: false,
+             timer: 1500
+           });
+           form.reset();
+     }else{
+      toast.error("Already in Database");
+      form.reset();
+     }
+
+
+}
+
+
   return (
     <div>
       <div className="flex justify-center gap-5 items-center flex-col">
@@ -52,7 +112,7 @@ const GuideProfile = () => {
           Add Guide Profile{" "}
         </h2>
         <form
-        //  onSubmit={handleBookNow}
+         onSubmit={handleGuide}
          >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             
@@ -91,9 +151,11 @@ const GuideProfile = () => {
                 Guide Education :
               </label>
               <input
+               name="education"
                 type="text"
                 placeholder="Type here"
                 className="input input-bordered w-full"
+                required
               />
             </div>
             <div>
@@ -101,18 +163,22 @@ const GuideProfile = () => {
                 Guide Work Experience :
               </label>
               <input
+                name="work"
                 type="text"
                 placeholder="Type here"
                 className="input input-bordered w-full"
+                required
               />
             </div>
             <div>
               <label className="block mb-2 font-semibold">Phone Number:</label>
               <input
+                
                 type="number"
                 placeholder="Type here"
                 name="phone"
                 className="input input-bordered w-full"
+                required
                 
               />
             </div>
@@ -125,8 +191,10 @@ const GuideProfile = () => {
               </label>
               <input
                 type="text"
+                name="skillOne"
                 placeholder="Type here"
                 className="input input-bordered w-full"
+                required
               />
             </div>
           <div>
@@ -135,8 +203,10 @@ const GuideProfile = () => {
               </label>
               <input
                 type="text"
+                name="skillTwo"
                 placeholder="Type here"
                 className="input input-bordered w-full"
+                required
               />
             </div>
           <div>
@@ -145,8 +215,10 @@ const GuideProfile = () => {
               </label>
               <input
                 type="text"
+                name="skillThree"
                 placeholder="Type here"
                 className="input input-bordered w-full"
+                required
               />
             </div>
           </div>
