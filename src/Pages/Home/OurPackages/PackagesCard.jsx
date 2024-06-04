@@ -59,7 +59,7 @@ const PackagesCard = ({pack,refetch}) => {
 
   return (
     <div>
-      <div className="card  p-5 bg-base-100 rounded-md border-[#929c96] border-2 hover:border-none hover:shadow-xl hover:shadow-[#a3b3ab] transition duration-300 ease-in-out">
+      <div className="card  p-5 bg-base-100 rounded-md  border hover:border-none hover:shadow-md hover:shadow-[#59a1e5] transition duration-300 ease-in-out">
         <div className="relative">
           <figure>
             <img
@@ -90,9 +90,9 @@ const PackagesCard = ({pack,refetch}) => {
             <p className="font-medium">Tour Type : {tourType} </p>
           </div>
 
-          <div className="card-actions ">
+          <div className=" ">
             <Link to={`/package-details/${_id}`}>
-              <button className="btn rounded-md w-full text-white border-none bg-[#80938b]">
+              <button className="btn rounded-md w-full text-white border-none bg-[#59a1e5]">
                 View Package
               </button>
             </Link>

@@ -21,6 +21,7 @@ import TourGuideProfile from "../Pages/TourGuideProfile/TourGuideProfile";
 import MyBooking from "../Pages/Dashboard/Tourist/MyBooking";
 import GuideProfile from "../Pages/Dashboard/Guide/GuideProfile";
 import AssignedTours from "../Pages/Dashboard/Guide/AssignedTours";
+import TypePage from "../Pages/Home/TypePage/TypePage";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
         element: <PrivateRoute>
           <PackageDetails></PackageDetails>
         </PrivateRoute>,
+      },
+      {
+        path: '/typePage/:id',
+        element: <TypePage></TypePage>
       }
     ],
   },

@@ -88,9 +88,10 @@ const AddPackage = () => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
               >
                 <option value="">Select Tour Type</option>
-                <option value="Scuba Diving Adventure">Scuba Diving Adventure</option>
-                <option value="Volcano Expedition">Volcano Expedition</option>
-                <option value="Forest Camping">Forest Camping</option>
+                <option value="Sports">Sports</option>
+                <option value="Expedition">Expedition</option>
+                <option value="Camping">Camping</option>
+                <option value="wildLife">WildLife</option>
               </select>
             </div>
             <div className="mb-4">
