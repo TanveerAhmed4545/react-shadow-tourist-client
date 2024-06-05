@@ -22,6 +22,8 @@ import MyBooking from "../Pages/Dashboard/Tourist/MyBooking";
 import GuideProfile from "../Pages/Dashboard/Guide/GuideProfile";
 import AssignedTours from "../Pages/Dashboard/Guide/AssignedTours";
 import TypePage from "../Pages/Home/TypePage/TypePage";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -81,6 +83,18 @@ export const router = createBrowserRouter([
         index: true,
         element: <PrivateRoute>
           <Statistics></Statistics>
+        </PrivateRoute>
+      },
+      {
+        path: 'payment/:id',
+        element: <PrivateRoute>
+          <Payment></Payment>
+        </PrivateRoute>
+      },
+      {
+        path: 'payment-history',
+        element: <PrivateRoute>
+          <PaymentHistory></PaymentHistory>
         </PrivateRoute>
       },
       {

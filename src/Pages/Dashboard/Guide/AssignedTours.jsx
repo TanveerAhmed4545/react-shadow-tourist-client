@@ -117,7 +117,6 @@ const AssignedTours = () => {
 
   return (
     <div>
-      <h2>AssignedTours</h2>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

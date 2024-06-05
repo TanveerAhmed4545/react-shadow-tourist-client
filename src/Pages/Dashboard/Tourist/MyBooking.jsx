@@ -1,22 +1,26 @@
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
+// import { useQuery } from "@tanstack/react-query";
+// import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../../assets/loader.json";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import useBooking from "../../../hooks/useBooking";
 
 const MyBooking = () => {
 
-    const {user} = useAuth();
+    // const {user} = useAuth();
     const axiosPublic = useAxiosPublic();
 
-    const {data: booking=[],isLoading,refetch} = useQuery({
-        queryKey: ['bookingEmail',user?.email],
-        queryFn: async()=>{
-            const res = await axiosPublic.get(`/booking/${user.email}`)
-            return res.data;
-        }
-    })
+    // const {data: booking=[],isLoading,refetch} = useQuery({
+    //     queryKey: ['bookingEmail',user?.email],
+    //     queryFn: async()=>{
+    //         const res = await axiosPublic.get(`/booking/${user.email}`)
+    //         return res.data;
+    //     }
+    // })
+
+    const {booking,isLoading,refetch} = useBooking();
 
     // console.log(booking);
 
@@ -119,11 +123,16 @@ const MyBooking = () => {
         <td ><button className="btn btn-sm bg-green-200">{book.status}</button></td>
         <th>
           <button
+          disabled={book?.status === 'Accepted' || book?.status === 'Rejected'}
            onClick={()=>handleDelete(book._id)}
           className="btn btn-ghost btn-sm bg-red-500 text-white">Delete</button>
         </th>
         <th>
-          <button className="btn btn-ghost btn-sm bg-green-500 text-white">Pay</button>
+         <Link to={`/dashboard/payment/${book?._id}`}>
+         <button 
+          disabled={book?.status !== 'Accepted'}
+          className="btn btn-ghost btn-sm bg-green-500 text-white">Pay</button>
+         </Link>
         </th>
       </tr>
         ) )
