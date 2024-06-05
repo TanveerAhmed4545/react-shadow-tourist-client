@@ -6,6 +6,7 @@ import loaderAnimation from "../../../assets/loader.json";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useBooking from "../../../hooks/useBooking";
+import { Helmet } from "react-helmet-async";
 
 const MyBooking = () => {
 
@@ -74,6 +75,9 @@ const MyBooking = () => {
 
     return (
         <div>
+      <Helmet>
+        <title>Shadow Tourist || My Booking</title>
+      </Helmet>
             <h2 className="text-center mb-5 text-2xl lg:text-4xl font-extrabold">
                 My Booking
               </h2>

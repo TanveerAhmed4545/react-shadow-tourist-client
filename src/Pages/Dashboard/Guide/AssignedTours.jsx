@@ -5,6 +5,7 @@ import moment from "moment";
 import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../../assets/loader.json";
+import { Helmet } from "react-helmet-async";
 
 const AssignedTours = () => {
 
@@ -117,6 +118,9 @@ const AssignedTours = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Shadow Tourist || Assigned Tour</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

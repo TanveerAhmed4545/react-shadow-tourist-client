@@ -2,6 +2,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useParams } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
+import { Helmet } from "react-helmet-async";
 
 const stripePromise  = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY);
 const Payment = () => {
@@ -10,6 +11,9 @@ const Payment = () => {
     
     return (
         <div>
+    <Helmet>
+        <title>Shadow Tourist || Payment</title>
+      </Helmet>
             
 
             <div>

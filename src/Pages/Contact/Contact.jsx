@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
@@ -6,6 +7,9 @@ import { MdEmail } from "react-icons/md";
 const Contact = () => {
     return (
         <div className=" mb-5 lg:mb-9">
+                <Helmet>
+        <title>Shadow Tourist || Contact Us</title>
+      </Helmet>
             {/* Hero Section */}
             <div className="relative">
                 <img src="https://i.ibb.co/7pty44N/luca-calderone-fwva-S5tq69g-unsplash-1.jpg" alt="Hero Image" className="w-full h-96 object-cover" />

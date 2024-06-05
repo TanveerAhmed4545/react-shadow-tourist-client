@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { AiOutlineBars } from "react-icons/ai";
-import {  BsGraphUp } from "react-icons/bs";
 import {  useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -10,6 +9,7 @@ import MenuItem from "./Menu/MenuItem";
 import TouristMenu from "./Menu/TouristMenu";
 import AdminMenu from "./Menu/AdminMenu";
 import GuideMenu from "./Menu/GuideMenu";
+import { FaHome } from "react-icons/fa";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -80,7 +80,7 @@ const Sidebar = () => {
 
              {/* Common */}
               {/* Statistics */}
-              <MenuItem label={'Statistics'} address={'/dashboard'} icon={BsGraphUp}></MenuItem>
+              <MenuItem label={'Dashboard Home'} address={'/dashboard'} icon={FaHome}></MenuItem>
               
 
               { role === 'tourist' && <TouristMenu></TouristMenu>}

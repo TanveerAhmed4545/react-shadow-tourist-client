@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../../assets/loader.json";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyWishList = () => {
     
@@ -75,6 +76,9 @@ const MyWishList = () => {
 
     return (
         <div>
+      <Helmet>
+        <title>Shadow Tourist || My WishList</title>
+      </Helmet>
             <div className="overflow-x-auto">
   <table className="table ">
     {/* head */}

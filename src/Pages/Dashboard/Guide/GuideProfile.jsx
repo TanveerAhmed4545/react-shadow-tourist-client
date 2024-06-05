@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const GuideProfile = () => {
   const { user } = useAuth();
@@ -64,6 +65,9 @@ const handleGuide = async(e) =>{
 
   return (
     <div>
+      <Helmet>
+        <title>Shadow Tourist || Guide Profile</title>
+      </Helmet>
       <div className="flex justify-center gap-5 items-center flex-col">
         <div className="bg-white shadow-lg rounded-md  w-full md:w-3/5 lg:w-3/5">
           <img

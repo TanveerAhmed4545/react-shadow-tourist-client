@@ -104,7 +104,7 @@ const TourGuideProfile = () => {
     );
 
   return (
-    <div>
+    <div className="">
       <div className="relative">
         <img
           src="https://i.ibb.co/7pty44N/luca-calderone-fwva-S5tq69g-unsplash-1.jpg"
@@ -117,17 +117,21 @@ const TourGuideProfile = () => {
           </h1>
         </div>
       </div>
-      <div className="card rounded-md lg:card-side bg-base-100 my-5 mx-5">
+      <div className=" flex gap-5 lg:flex-row flex-col rounded-md lg:card-side bg-base-100 my-5 mx-5 ">
+        <div className="lg:basis-2/5">
         <figure>
-          <img src={profilePicture} alt="Album" className="rounded-md" />
+          <img src={profilePicture} alt="Album" className="rounded-md w-full md:w-[50vw] md:mx-auto lg:w-full h-[70vh] lg:h-[70vh]" />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">Name : {name}</h2>
-          <p>Email: {email}</p>
-          <p>Phone: {phone}</p>
-          <p>Education: {education}</p>
-          <p>Work Experience: {workExperience}</p>
+        </div>
+        <div className=" text-center lg:text-left lg:basis-3/5  md:py-5 space-y-5 ">
+          <h2 className="text-xl font-bold">Name : {name}</h2>
+          <p><span className="text-lg font-semibold">Email:</span> {email}</p>
+          <p><span className="text-lg font-semibold">Phone:</span> {phone}</p>
+          <p><span className="text-lg font-semibold">Education:</span> {education}</p>
+          <p><span className="text-lg font-semibold">Work Experience:</span> {workExperience}</p>
+          <p className=""><span className="text-lg font-semibold">Skills :</span> </p>
           <div>
+          
             {skills.map((skill, idx) => (
               <button
                 className="mr-3 mb-3 lg:mr-5  border-none btn rounded-full text-white bg-[#257197]"
@@ -141,12 +145,12 @@ const TourGuideProfile = () => {
       </div>
 
       <div className="mx-5 md:mx-20 lg:mx-32">
-        <div className="text-center py-8 px-5">
+        <div className="text-center py-5 px-5">
             <h2 className="text-2xl lg:text-4xl font-extrabold">All Reviews</h2>
         </div>
       {
     reviewData.length > 0 ? (
-        <div>
+        <div >
             {reviewData.map(item => <ReviewCard key={item._id} item={item}></ReviewCard>)}
         </div>
     ) : (
@@ -157,7 +161,7 @@ const TourGuideProfile = () => {
 
       {/* form  */}
 
-      <div className="p-8 bg-[#cfe2eb] my-5 lg:my-10 shadow-lg rounded-lg max-w-lg mx-auto sm:p-10 md:p-12 lg:max-w-2xl">
+      <div className="p-8 mx-5 bg-[#F1F5F9] my-5 lg:my-10 shadow-md rounded-md max-w-lg md:mx-auto sm:p-10 md:p-12 lg:max-w-2xl">
         <h2 className="text-2xl text-center font-bold text-gray-800 mb-6 sm:text-3xl">
           Add a Review
         </h2>
