@@ -5,7 +5,7 @@ const StoryCard = ({ item }) => {
   // eslint-disable-next-line react/prop-types
   const { _id, imageUrl, title ,story } = item;
   // eslint-disable-next-line react/prop-types
-  const shortStory = story.slice(0, 400);
+  const shortStory = story ? story.slice(0, 400) : "";
   return (
     <Link to={`/storyDetails/${_id}`}  className="flex flex-col">
       <div className="flex flex-col  h-full  p-6 space-y-5 overflow-hidden rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">

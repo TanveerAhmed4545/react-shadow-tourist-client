@@ -5,7 +5,7 @@ import useAxiosPublic from "./useAxiosPublic";
 const useStory = () => {
     const axiosPublic = useAxiosPublic();
     const {data: stories = [], isLoading} = useQuery({
-        queryKey: ['guides'],
+        queryKey: ['stories'],
         queryFn: async()=>{
             const res = await axiosPublic.get('/story');
             return res.data;

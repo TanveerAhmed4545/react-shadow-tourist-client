@@ -6,6 +6,8 @@ import useStory from "../../../hooks/useStory";
 const OurStory = () => {
     const [stories,isLoading] = useStory();
 
+    
+
   if (isLoading)
     return (
       <div className="flex justify-center items-center ">

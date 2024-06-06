@@ -42,6 +42,7 @@ const Navbar = () => {
            ? "pending"
            : `mr-3 ${scrolled? 'text-black' : 'text-[#4692FF]'} font-bold`
        }>Blogs</NavLink></li>
+           
     <li><NavLink  to='/about'  className={({ isActive, isPending }) =>
          isActive
            ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
@@ -56,6 +57,13 @@ const Navbar = () => {
            ? "pending"
            : `mr-3 ${scrolled? 'text-black' : 'text-[#4692FF]'} font-bold`
        }>Contact Us</NavLink></li>
+       <li><NavLink  to='/community'  className={({ isActive, isPending }) =>
+         isActive
+           ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
+           : isPending
+           ? "pending"
+           : `mr-3 ${scrolled? 'text-black' : 'text-[#4692FF]'} font-bold`
+       }>Community</NavLink></li>
 
 
     {

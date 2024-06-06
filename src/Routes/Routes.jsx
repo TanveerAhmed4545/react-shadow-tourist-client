@@ -29,6 +29,7 @@ import TouristProfile from "../Pages/Dashboard/Tourist/TouristProfile";
 import StoryDetails from "../Pages/StoryDetails/StoryDetails";
 import AllStories from "../Pages/AllStories/AllStories";
 import Blogs from "../Pages/Blogs/Blogs";
+import Community from "../Pages/Community/Community";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs></Blogs>,
+      },
+      {
+        path: "/community",
+        element: <Community></Community>,
       },
       {
         path: "/contact",
