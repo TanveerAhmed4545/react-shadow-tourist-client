@@ -14,7 +14,7 @@ const Contact = () => {
             <div className="relative">
                 <img src="https://i.ibb.co/7pty44N/luca-calderone-fwva-S5tq69g-unsplash-1.jpg" alt="Hero Image" className="w-full h-96 object-cover" />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <h1 className="text-white text-4xl lg:text-6xl font-bold">Welcome to Our World</h1>
+                <h1 className="text-white text-center text-4xl lg:text-6xl font-bold">Welcome to Our World</h1>
                 </div>
             </div>
 

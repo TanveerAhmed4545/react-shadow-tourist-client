@@ -7,6 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useReviews from "../../hooks/useReviews";
 import ReviewCard from "./ReviewCard";
+import { Helmet } from "react-helmet-async";
 
 const TourGuideProfile = () => {
 
@@ -105,6 +106,9 @@ const TourGuideProfile = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>Shadow Tourist || Tour Guide profile</title>
+      </Helmet>
       <div className="relative">
         <img
           src="https://i.ibb.co/7pty44N/luca-calderone-fwva-S5tq69g-unsplash-1.jpg"

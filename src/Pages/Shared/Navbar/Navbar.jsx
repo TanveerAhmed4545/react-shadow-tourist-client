@@ -33,22 +33,30 @@ const Navbar = () => {
            ? "bg-none  bg-[#4692FF] border-none text-white font-semibold border-black mr-3"
            : isPending
            ? "pending"
-           : "mr-3 text-white font-semibold"
+           : `mr-3 ${scrolled? 'text-black' : 'text-[#4692FF]'} font-bold`
        }>Home</NavLink></li>
+           <li><NavLink  to='/blogs'  className={({ isActive, isPending }) =>
+         isActive
+           ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
+           : isPending
+           ? "pending"
+           : `mr-3 ${scrolled? 'text-black' : 'text-[#4692FF]'} font-bold`
+       }>Blogs</NavLink></li>
     <li><NavLink  to='/about'  className={({ isActive, isPending }) =>
          isActive
            ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
            : isPending
            ? "pending"
-           : "mr-3 text-white font-semibold"
+           : `mr-3 ${scrolled? 'text-black' : 'text-[#4692FF]'} font-bold`
        }>About Us</NavLink></li>
     <li><NavLink  to='/contact'  className={({ isActive, isPending }) =>
          isActive
            ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
            : isPending
            ? "pending"
-           : "mr-3 text-white font-semibold"
+           : `mr-3 ${scrolled? 'text-black' : 'text-[#4692FF]'} font-bold`
        }>Contact Us</NavLink></li>
+
 
     {
        !user && <>
@@ -57,14 +65,14 @@ const Navbar = () => {
      ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
      : isPending
      ? "pending"
-     : "mr-3 text-white font-semibold"
+     : `mr-3 ${scrolled? 'text-black' : 'text-[#4692FF]'} font-bold`
  }>Login</NavLink></li>
  <li><NavLink  to='/register'  className={({ isActive, isPending }) =>
    isActive
-     ? "bg-none border-none bg-[#4692FF] text-white font-semibold border-black mr-3"
+     ? `bg-none border-none bg-[#4692FF] ${scrolled? 'text-black' : 'text-white'} font-semibold border-black mr-3`
      : isPending
      ? "pending"
-     : "mr-3 text-white font-semibold"
+     : `mr-3 ${scrolled? 'text-black' : 'text-[#4692FF]'} font-bold`
  }>Register</NavLink></li>
       </>
     }
@@ -93,20 +101,20 @@ const handleSignOut = () =>{
         <div className={`navbar ${scrolled ? 'bg-[#AACBFF]' : 'bg-transparent '} fixed top-0 z-50 transition-colors duration-300`}>
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost text-white lg:hidden">
+            <div tabIndex={0} role="button" className={`btn btn-ghost ${scrolled? 'text-black' : 'text-white'} lg:hidden`}>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </div>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+            <ul tabIndex={0} className="menu menu-sm  dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               {
                   links
               }
             </ul>
           </div>
          
-          <Link to='/' className='flex gap-1 items-center'>
+          <Link to='/' className='flex  items-center'>
                   <img className='w-auto h-10' src={logo}  />
                   {
-                    scrolled ? <span className='font-bold  text-black '>Shadow Tourist</span> : <span className='font-bold text-white '>Shadow Tourist</span>
+                    scrolled ? <span className='font-black text-sm md:text-xl  text-black '>Shadow Tourist</span> : <span className='font-black text-sm md:text-xl text-white '>Shadow Tourist</span>
                   }
                   
                 </Link>

@@ -28,6 +28,7 @@ import GuideRoute from "./GuideRoute";
 import TouristProfile from "../Pages/Dashboard/Tourist/TouristProfile";
 import StoryDetails from "../Pages/StoryDetails/StoryDetails";
 import AllStories from "../Pages/AllStories/AllStories";
+import Blogs from "../Pages/Blogs/Blogs";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <About></About>,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
       },
       {
         path: "/contact",
