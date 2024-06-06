@@ -6,7 +6,7 @@ const PackTypeCard = ({type}) => {
      const {tourType,img} = type;
   return (
     <div>
-      <div className="card rounded-md  p-5 bg-base-100   border hover:border-none hover:shadow-md hover:shadow-[#59a1e5] transition duration-300 ease-in-out">
+      <div className="card rounded-md  p-5 bg-base-100  border-[#D9EEFF]  border hover:border-none hover:shadow-md hover:shadow-[#59a1e5] transition duration-300 ease-in-out">
         <div className="relative">
           <figure>
             <img
@@ -16,7 +16,7 @@ const PackTypeCard = ({type}) => {
           </figure>
         </div>
 
-        <p className="my-3 text-center font-semibold hover:text-[#59a1e5]">
+        <p className="my-3 text-center uppercase font-bold hover:text-[#59a1e5]">
           {tourType}
         </p>
 

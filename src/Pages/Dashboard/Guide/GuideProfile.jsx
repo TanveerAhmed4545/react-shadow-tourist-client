@@ -38,11 +38,11 @@ const handleGuide = async(e) =>{
     skills
   }
 
-     console.log("click");
-     console.table(guideData);
+    //  console.log("click");
+    //  console.table(guideData);
 
      const guideRes = await axiosSecure.post('/guide',guideData)
-     console.log(guideRes.data);
+    //  console.log(guideRes.data);
      if(guideRes.data.insertedId){
          // show success popup
         
@@ -69,7 +69,7 @@ const handleGuide = async(e) =>{
         <title>Shadow Tourist || Guide Profile</title>
       </Helmet>
       <div className="flex justify-center gap-5 items-center flex-col">
-        <div className="bg-white shadow-lg rounded-md  w-full md:w-3/5 lg:w-3/5">
+        <div className="bg-white shadow-lg rounded-md  w-full md:w-3/5 lg:w-4/5">
           <img
             alt="profile"
             src="https://i.ibb.co/bFLrQgX/simon-english-48ner-ZQCHgo-unsplash-1.jpg"
@@ -110,7 +110,7 @@ const handleGuide = async(e) =>{
 
 
       {/* form */}
-        <div className=" shadow-lg rounded-md  w-full md:w-3/5 lg:w-3/5">
+        <div className=" shadow-lg rounded-md  w-full md:w-3/5 lg:w-4/5">
       <div className="p-5 lg:p-10 bg-gray-100 rounded-lg shadow-lg">
         <h2 className="text-2xl md:text-4xl  font-bold text-center text-[#5A92E1] mb-5">
           Add Guide Profile{" "}

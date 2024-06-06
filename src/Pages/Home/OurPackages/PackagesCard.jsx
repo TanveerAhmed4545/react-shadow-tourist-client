@@ -59,7 +59,7 @@ const PackagesCard = ({pack,refetch}) => {
 
   return (
     <div>
-      <div className="card  p-5 bg-base-100 rounded-md  border hover:border-none hover:shadow-md hover:shadow-[#59a1e5] transition duration-300 ease-in-out">
+      <div className="card  p-5 bg-base-100 rounded-md  border border-[#D9EEFF] hover:border-none hover:shadow-md hover:shadow-[#59a1e5] transition duration-300 ease-in-out">
         <div className="relative">
           <figure>
             <img

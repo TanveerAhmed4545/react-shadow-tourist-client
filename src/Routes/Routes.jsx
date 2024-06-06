@@ -24,6 +24,9 @@ import AssignedTours from "../Pages/Dashboard/Guide/AssignedTours";
 import TypePage from "../Pages/Home/TypePage/TypePage";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
+import GuideRoute from "./GuideRoute";
+import TouristProfile from "../Pages/Dashboard/Tourist/TouristProfile";
+import StoryDetails from "../Pages/StoryDetails/StoryDetails";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: '/storyDetails/:id',
+        element: <StoryDetails></StoryDetails>
       },
       {
         path: "/package-details/:id",
@@ -98,6 +105,12 @@ export const router = createBrowserRouter([
         </PrivateRoute>
       },
       {
+        path: 'touristProfile',
+        element: <PrivateRoute>
+          <TouristProfile></TouristProfile>
+        </PrivateRoute>
+      },
+      {
         path: 'my-booking',
         element: <PrivateRoute>
           <MyBooking></MyBooking>
@@ -105,11 +118,19 @@ export const router = createBrowserRouter([
       },
       {
         path: 'guideProfile',
-        element: <GuideProfile></GuideProfile>
+        element: <PrivateRoute>
+          <GuideRoute>
+          <GuideProfile></GuideProfile>
+          </GuideRoute>
+        </PrivateRoute>
       },
       {
         path: 'assignedTours',
-        element: <AssignedTours></AssignedTours>
+        element: <PrivateRoute>
+          <GuideRoute>
+          <AssignedTours></AssignedTours>
+          </GuideRoute>
+        </PrivateRoute>
       },
       {
         path: 'admin-profile',
