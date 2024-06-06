@@ -27,6 +27,7 @@ import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 import GuideRoute from "./GuideRoute";
 import TouristProfile from "../Pages/Dashboard/Tourist/TouristProfile";
 import StoryDetails from "../Pages/StoryDetails/StoryDetails";
+import AllStories from "../Pages/AllStories/AllStories";
 
 export const router = createBrowserRouter([
   {
@@ -67,10 +68,12 @@ export const router = createBrowserRouter([
         element: <StoryDetails></StoryDetails>
       },
       {
+        path: '/allStories',
+        element: <AllStories></AllStories>
+      },
+      {
         path: "/package-details/:id",
-        element: <PrivateRoute>
-          <PackageDetails></PackageDetails>
-        </PrivateRoute>,
+        element: <PackageDetails></PackageDetails>,
       },
       {
         path: '/typePage/:id',

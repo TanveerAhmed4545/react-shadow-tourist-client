@@ -31,7 +31,7 @@ const Login = () => {
           result.user &&  toast.success("Login Successfully");
           
           // navigate after login
-          navigate(location?.state ? location.state : '/');
+          navigate(location.state?.from?.pathname ? location.state?.from?.pathname : '/');
          
 
         })

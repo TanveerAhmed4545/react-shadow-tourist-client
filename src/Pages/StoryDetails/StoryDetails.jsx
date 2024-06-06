@@ -1,14 +1,17 @@
 import { Helmet } from "react-helmet-async";
-import {  useParams } from "react-router-dom";
+import {  NavLink, useLocation, useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../assets/loader.json";
 import moment from "moment";
 import { FacebookShareButton } from "react-share";
+import useAuth from "../../hooks/useAuth";
 
 const StoryDetails = () => {
   const { id } = useParams();
+  const {user} =useAuth();
+  const location = useLocation();
  
 
   const axiosPublic = useAxiosPublic();
@@ -79,10 +82,25 @@ const StoryDetails = () => {
               {details?.title}
             </h3>
             
-            <p>{details?.story}</p>
-            <FacebookShareButton url={'https://react-haven-hearth.web.app/'} >
+            <p className="pb-3">{details?.story}</p>
+            {/* <FacebookShareButton url={'https://react-haven-hearth.web.app/'} >
            <button className="bg-blue-400 btn text-white">Share on Facebook</button>  
-          </FacebookShareButton>
+          </FacebookShareButton> */}
+
+          {!user ? (
+              <NavLink  to="/login" state={{from: location}} replace>
+                <button
+                  type="button"
+                  className="bg-[#4692FF] hover:bg-[#82b2f7] text-white font-semibold py-3 px-6 rounded-lg transition duration-200"
+                >
+                  Login to Share
+                </button>
+              </NavLink>
+            ) : (
+                <FacebookShareButton url={'https://react-haven-hearth.web.app/'} >
+                <button className="bg-blue-400 btn text-white">Share on Facebook</button>  
+               </FacebookShareButton>
+            )}
           </div>
         </div>
       </div>

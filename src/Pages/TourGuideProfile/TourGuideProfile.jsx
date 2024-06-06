@@ -194,7 +194,7 @@ const TourGuideProfile = () => {
           </div>
           <div className="text-center mt-8">
           {!user ? (
-              <NavLink state={location.pathname} to="/login">
+              <NavLink to="/login" state={{from: location}} replace>
                 <button
                   type="button"
                   className="bg-[#4692FF] hover:bg-[#82b2f7] text-white font-semibold py-3 px-6 rounded-lg transition duration-200"

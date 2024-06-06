@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { BsCurrencyDollar } from "react-icons/bs";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../assets/loader.json";
@@ -19,6 +19,7 @@ const PackageDetails = () => {
   const { id } = useParams();
   const [guides] = useGuide();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const axiosPublic = useAxiosPublic();
   const {
@@ -267,12 +268,30 @@ const PackageDetails = () => {
               </select>
             </div>
           </div>
-          <button
+          {/* <button
             type="submit"
             className="mt-5 bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600"
           >
             Book Now
-          </button>
+          </button> */}
+
+          {!user ? (
+              <NavLink to="/login" state={{from: location}} replace>
+                <button
+                  type="button"
+                  className="bg-[#4692FF] mt-5 hover:bg-[#82b2f7] text-white font-semibold py-3 px-6 rounded-lg transition duration-200"
+                >
+                  Login to Book Now
+                </button>
+              </NavLink>
+            ) : (
+              <button
+              type="submit"
+              className="mt-5 bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600"
+            >
+              Book Now
+            </button>
+            )}
         </form>
       </div>
     </div>

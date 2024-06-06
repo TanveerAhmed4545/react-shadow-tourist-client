@@ -1,19 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import StoryCard from "./StoryCard";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../../assets/loader.json";
+import { Link } from "react-router-dom";
+import useStory from "../../../hooks/useStory";
 const OurStory = () => {
-  const axiosPublic = useAxiosPublic();
-  const { data: stories = [], isLoading } = useQuery({
-    queryKey: ["ourStory"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/story");
-      return res.data;
-    },
-  });
-
-  // console.log(stories);
+    const [stories,isLoading] = useStory();
 
   if (isLoading)
     return (
@@ -41,8 +32,10 @@ const OurStory = () => {
       </div>
 
       <div className="text-center my-4">
-
+        <Link to={'/allStories'}>
         <button className="btn bg-blue-500 text-white">All Stories</button>
+        </Link>
+        
       </div>
     </div>
   );
