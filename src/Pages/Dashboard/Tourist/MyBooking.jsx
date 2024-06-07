@@ -3,26 +3,54 @@ import Lottie from "lottie-react";
 import loaderAnimation from "../../../assets/loader.json";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import useBooking from "../../../hooks/useBooking";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 const MyBooking = () => {
 
-    // const {user} = useAuth();
+    const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
+    const [currentPage, setCurrentPage] = useState(0);
 
-    // const {data: booking=[],isLoading,refetch} = useQuery({
-    //     queryKey: ['bookingEmail',user?.email],
-    //     queryFn: async()=>{
-    //         const res = await axiosPublic.get(`/booking/${user.email}`)
-    //         return res.data;
-    //     }
-    // })
+    const {data: booking=[],isLoading,refetch} = useQuery({
+        queryKey: ['bookingGetEmail',user?.email,currentPage],
+        queryFn: async()=>{
+            const res = await axiosSecure.get(`/booking-get/${user.email}/?page=${currentPage}`)
+            return res.data;
+        }
+    })
 
-    const {booking,isLoading,refetch} = useBooking();
+    // const {booking,isLoading,refetch} = useBooking();
 
-    // console.log(booking);
+    
+    const {data: totalCount={},isLoading:loading} = useQuery({
+        queryKey: ['bookingCount',user?.email],
+        queryFn: async()=>{
+            const res = await axiosSecure.get(`/bookingCount/${user.email}`)
+            return res.data;
+        }
+    })
+    const {count} = totalCount;
+    const itemsPerPage = 10;
+   
+    const numberOfPages = Math.ceil(count/itemsPerPage);
+    const pages = numberOfPages > 0 ? [...Array(numberOfPages).keys()] : [];
+    // console.log(count,itemsPerPage,numberOfPages,pages);
+
+    const handlePrevPage = () =>{
+     if(currentPage > 0){
+      setCurrentPage(currentPage - 1);
+     }
+    }
+
+    const handleNextPage = () =>{
+      if(currentPage < pages.length - 1){
+       setCurrentPage(currentPage + 1);
+      }
+     }
 
 
     const handleDelete = async(id) => {
@@ -68,12 +96,12 @@ const MyBooking = () => {
 
 
 
-    if(isLoading) return <div className="flex justify-center items-center ">
+    if(isLoading || loading) return <div className="flex justify-center items-center ">
     <Lottie className="w-1/3" animationData={loaderAnimation} loop={true} />
     </div>
 
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
       <Helmet>
         <title>Shadow Tourist || My Booking</title>
       </Helmet>
@@ -147,6 +175,24 @@ const MyBooking = () => {
     
   </table>
 </div>
+           
+           <div className="text-center my-5 mt-auto">
+            
+            <button
+            onClick={handlePrevPage}
+            className=" btn btn-md mr-1">«</button>
+            {
+             pages.map((page,idx) => <button
+             onClick={()=> setCurrentPage(page)}
+             key={idx} 
+             className={currentPage === page ? 'btn btn-md btn-active mr-1' : 'btn  btn-md mr-1'}
+             >{page + 1}</button>)
+            }
+            <button
+            onClick={handleNextPage}
+            className=" btn btn-md mr-1">»</button>
+           </div>
+
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { BsCurrencyDollar } from "react-icons/bs";
-import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../assets/loader.json";
@@ -12,6 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import useGuide from "../../hooks/useGuide";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import TourGuideCard from "../Home/OurTourGuide/TourGuideCard";
 
 
 const PackageDetails = () => {
@@ -188,6 +189,21 @@ const PackageDetails = () => {
             ))}
           </div>
         </div>
+      </div>
+
+       {/* all tour guides */}
+      <div className="mx-5">
+        <h2 className="text-center text-2xl font-semibold text-[#4692FF]">See Our all guides Profile</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 px-6">
+                      {
+                        guides.slice(0,3).map(guide => <TourGuideCard key={guide._id} guide={guide} ></TourGuideCard>)
+                       }  
+                </div>
+      
+                <div className="my-4 text-center">
+      <Link to={'/allGuides'}><button className="btn bg-[#4692ff] text-white">See all Guides</button></Link>
+      
+      </div>
       </div>
 
       {/* form */}

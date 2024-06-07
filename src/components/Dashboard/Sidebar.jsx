@@ -14,8 +14,8 @@ import { FaHome } from "react-icons/fa";
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
-  const [role,isLoading] = useRole();
-  console.log(role,isLoading);
+  const [role] = useRole();
+  // console.log(role,isLoading);
 
   const navigate = useNavigate();
 
