@@ -6,21 +6,53 @@ import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../../assets/loader.json";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
 
 const AssignedTours = () => {
 
+  const [currentPage, setCurrentPage] = useState(0);
   const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
 
     const {data: assign=[],isLoading,refetch} = useQuery({
-        queryKey: ['assignedTours',user?.email],
+        queryKey: ['assignedTours',user?.email,currentPage],
         queryFn: async()=>{
-            const res = await axiosSecure.get(`/assign/${user.displayName}`)
+            const res = await axiosSecure.get(`/assign/${user.displayName}/?page=${currentPage}`)
             return res.data;
         }
     })
 
     // console.log(assign);
+
+
+
+    const {data: totalCount={},isLoading:loading} = useQuery({
+      queryKey: ['assignedCount',user?.email],
+      queryFn: async()=>{
+          const res = await axiosSecure.get(`/assignedCount/${user.email}`)
+          return res.data;
+      }
+  })
+  const {count} = totalCount;
+  const itemsPerPage = 10;
+  
+  const numberOfPages = Math.ceil(count/itemsPerPage);
+  const pages = numberOfPages > 0 ? [...Array(numberOfPages).keys()] : [];
+  // console.log(count,itemsPerPage,numberOfPages,pages);
+  
+  const handlePrevPage = () =>{
+   if(currentPage > 0){
+    setCurrentPage(currentPage - 1);
+   }
+  }
+  
+  const handleNextPage = () =>{
+    if(currentPage < pages.length - 1){
+     setCurrentPage(currentPage + 1);
+    }
+   }
+  
+
  
 
     const handleRejected = async(id) => {
@@ -112,15 +144,18 @@ const AssignedTours = () => {
 
     }
 
-    if(isLoading) return <div className="flex justify-center items-center ">
+    if(isLoading || loading) return <div className="flex justify-center items-center ">
     <Lottie className="w-1/3" animationData={loaderAnimation} loop={true} />
     </div>
 
   return (
-    <div>
+    <div className="flex flex-col min-h-[90vh]">
       <Helmet>
         <title>Shadow Tourist || Assigned Tour</title>
       </Helmet>
+      <h2 className="text-center mb-5 text-2xl lg:text-4xl font-extrabold">
+                Assigned Tours
+              </h2>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -165,6 +200,22 @@ const AssignedTours = () => {
           </tbody>
         </table>
       </div>
+      <div className="text-center py-5 mt-auto ">
+            
+            <button
+            onClick={handlePrevPage}
+            className=" btn btn-md mr-1">«</button>
+            {
+             pages.map((page,idx) => <button
+             onClick={()=> setCurrentPage(page)}
+             key={idx} 
+             className={currentPage === page ? 'btn btn-md btn-active mr-1' : 'btn  btn-md mr-1'}
+             >{page + 1}</button>)
+            }
+            <button
+            onClick={handleNextPage}
+            className=" btn btn-md mr-1">»</button>
+           </div>
     </div>
   );
 };
