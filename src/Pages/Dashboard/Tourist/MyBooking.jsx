@@ -176,7 +176,7 @@ const MyBooking = () => {
   </table>
 </div>
            
-           <div className="text-center my-5 mt-auto">
+           <div className="text-center py-5 mt-auto">
             
             <button
             onClick={handlePrevPage}

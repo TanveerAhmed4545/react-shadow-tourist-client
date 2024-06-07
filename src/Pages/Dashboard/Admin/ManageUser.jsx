@@ -4,10 +4,13 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import Select from 'react-select';
 import { Helmet } from "react-helmet-async";
+
+
 const ManageUser = () => {
   const [search, setSearch] = useState('');
   const [role, setRole] = useState(null);
-  console.log(role,search)
+  const [currentPage, setCurrentPage] = useState(0);
+  // console.log(role,search)
   const axiosSecure = useAxiosSecure();
   // const {user} = useAuth();
 
@@ -17,9 +20,9 @@ const ManageUser = () => {
     
     refetch,
   } = useQuery({
-    queryKey: ["manageUsers", search, role],
+    queryKey: ["manageUsers", search, role,currentPage],
     queryFn: async () => {
-      const { data } = await axiosSecure.get("/users" ,{
+      const { data } = await axiosSecure.get(`/users/?page=${currentPage}` ,{
         params: {
           search,
           role: role ? role.value : ''
@@ -29,6 +32,37 @@ const ManageUser = () => {
     },
   });
   // console.log(users);
+
+
+      
+  const {data: totalCount={}} = useQuery({
+    queryKey: ['userCount'],
+    queryFn: async()=>{
+        const res = await axiosSecure.get('/userCount')
+        return res.data;
+    }
+})
+const {count} = totalCount;
+const itemsPerPage = 10;
+
+const numberOfPages = Math.ceil(count/itemsPerPage);
+const pages = numberOfPages > 0 ? [...Array(numberOfPages).keys()] : [];
+// console.log(count,itemsPerPage,numberOfPages,pages);
+
+const handlePrevPage = () =>{
+ if(currentPage > 0){
+  setCurrentPage(currentPage - 1);
+ }
+}
+
+const handleNextPage = () =>{
+  if(currentPage < pages.length - 1){
+   setCurrentPage(currentPage + 1);
+  }
+ }
+
+
+
 
   const updateUserRole = useMutation({
     mutationFn: async ({ email, role, status }) => {
@@ -63,7 +97,7 @@ const ManageUser = () => {
  
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Helmet>
         <title>Shadow Tourist || Manage User</title>
       </Helmet>
@@ -133,6 +167,25 @@ const ManageUser = () => {
           </tbody>
         </table>
       </div>
+
+
+      <div className="text-center py-5 mt-auto ">
+            
+            <button
+            onClick={handlePrevPage}
+            className=" btn btn-md mr-1">«</button>
+            {
+             pages.map((page,idx) => <button
+             onClick={()=> setCurrentPage(page)}
+             key={idx} 
+             className={currentPage === page ? 'btn btn-md btn-active mr-1' : 'btn  btn-md mr-1'}
+             >{page + 1}</button>)
+            }
+            <button
+            onClick={handleNextPage}
+            className=" btn btn-md mr-1">»</button>
+           </div>
+
     </div>
   );
 };
