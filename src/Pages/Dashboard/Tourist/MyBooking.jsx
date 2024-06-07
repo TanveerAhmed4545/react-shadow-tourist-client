@@ -1,17 +1,16 @@
-// import { useQuery } from "@tanstack/react-query";
-// import useAuth from "../../../hooks/useAuth";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
+
 import Lottie from "lottie-react";
 import loaderAnimation from "../../../assets/loader.json";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useBooking from "../../../hooks/useBooking";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyBooking = () => {
 
     // const {user} = useAuth();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     // const {data: booking=[],isLoading,refetch} = useQuery({
     //     queryKey: ['bookingEmail',user?.email],
@@ -41,7 +40,7 @@ const MyBooking = () => {
                 try {
   
                     // Delete the Booking 
-                    const { data } = await axiosPublic.delete(`/booking-delete/${id}`);
+                    const { data } = await axiosSecure.delete(`/booking-delete/${id}`);
                    
   
                     //  booking  deleted

@@ -2,6 +2,7 @@ import Lottie from "lottie-react";
 import useGuide from "../../../hooks/useGuide";
 import TourGuideCard from "./TourGuideCard";
 import loaderAnimation from "../../../assets/loader.json";
+import { Link } from "react-router-dom";
 const OurTourGuide = () => {
     const [guides,loading] = useGuide();
     if (loading) return <div className="flex justify-center items-center ">
@@ -16,11 +17,14 @@ const OurTourGuide = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 px-6">
                       {
-                        guides.map(guide => <TourGuideCard key={guide._id} guide={guide} ></TourGuideCard>)
+                        guides.slice(0,3).map(guide => <TourGuideCard key={guide._id} guide={guide} ></TourGuideCard>)
                        }  
                 </div>
       
-
+                <div className="my-4 text-center">
+      <Link to={'/allGuides'}><button className="btn bg-[#4692ff] text-white">All Guides </button></Link>
+      
+      </div>
 
     </div>
   );

@@ -30,6 +30,7 @@ import StoryDetails from "../Pages/StoryDetails/StoryDetails";
 import AllStories from "../Pages/AllStories/AllStories";
 import Blogs from "../Pages/Blogs/Blogs";
 import Community from "../Pages/Community/Community";
+import AllGuides from "../Pages/AllGuides/AllGuides";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: "/allPackages",
         element: <AllPackages></AllPackages>,
+      },
+      {
+        path: "/allGuides",
+        element: <AllGuides></AllGuides>,
       },
       {
         path: "/guide-Profile/:id",

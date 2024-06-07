@@ -11,6 +11,7 @@ import useAuth from "../../hooks/useAuth";
 import "react-datepicker/dist/react-datepicker.css";
 import useGuide from "../../hooks/useGuide";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const PackageDetails = () => {
@@ -22,6 +23,7 @@ const PackageDetails = () => {
   const location = useLocation();
 
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
     data: details = {},
     isPending: loading,
@@ -78,7 +80,7 @@ const PackageDetails = () => {
     }).then( async (result) => {
       if (result.isConfirmed) {
         try{
-          const bookRes = await axiosPublic.post('/booking-post',bookingData)
+          const bookRes = await axiosSecure.post('/booking-post',bookingData)
           // console.log(bookRes.data);
           if(bookRes.data.insertedId){
             Swal.fire({

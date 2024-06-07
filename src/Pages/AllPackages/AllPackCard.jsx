@@ -12,8 +12,7 @@ const AllPackCard = ({pack}) => {
             <div className="card card-compact rounded-md h-auto md:min-h-[570px]  bg-base-100 shadow-xl">
   <figure><img className="max-h-80 w-full" src={firstImage} /></figure>
   <div className="card-body">
-    <h2 className="card-title"></h2>
-    <p><span className="font-semibold">Trip Title : {tripTitle} </span> </p>
+    <h2 className="card-title">Trip Title : {tripTitle}</h2>
     <div className="flex">
     <p className="font-semibold flex items-center gap-2">Price : {price}  <BsCurrencyDollar className="text-[#599fe5]"/></p>
     </div>
