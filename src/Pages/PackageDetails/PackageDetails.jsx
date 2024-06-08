@@ -13,9 +13,13 @@ import useGuide from "../../hooks/useGuide";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import TourGuideCard from "../Home/OurTourGuide/TourGuideCard";
+import useBooking from "../../hooks/useBooking";
+import toast from "react-hot-toast";
+
 
 
 const PackageDetails = () => {
+  const {booking} = useBooking();
   const [tourDate, setTourDate] = useState(new Date());
     const { user } = useAuth();
   const { id } = useParams();
@@ -46,7 +50,7 @@ const PackageDetails = () => {
   const handleBookNow = async(event) => {
     event.preventDefault();
     // Logic to handle booking
-    
+
     const form = event.target;
     const tourGuideName = form.elements.tourGuideName.value;
     const packageName = details?.tripTitle;
@@ -83,12 +87,16 @@ const PackageDetails = () => {
         try{
           const bookRes = await axiosSecure.post('/booking-post',bookingData)
           // console.log(bookRes.data);
-          if(bookRes.data.insertedId){
+          if(bookRes?.data?.insertedId){
+            if(booking?.length > 2){
+              toast.success("Congratulations You Got 20% Off");
+            }
             Swal.fire({
               title: "Booked!",
               text: "Your Booking Succeeded.",
               icon: "success"
             });
+            
             navigate('/dashboard/my-booking')
           }
 
@@ -118,9 +126,11 @@ const PackageDetails = () => {
 
   return (
     <div>
+
       <Helmet>
         <title>Shadow Tourist || Package Details</title>
       </Helmet>
+
       <div className="relative">
         <img
           src="https://i.ibb.co/7pty44N/luca-calderone-fwva-S5tq69g-unsplash-1.jpg"

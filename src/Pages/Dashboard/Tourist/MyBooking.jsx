@@ -1,4 +1,4 @@
-
+import useWindowSize from 'react-use/lib/useWindowSize'
 import Lottie from "lottie-react";
 import loaderAnimation from "../../../assets/loader.json";
 import Swal from "sweetalert2";
@@ -7,9 +7,15 @@ import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ReactConfetti from 'react-confetti';
+
+
 
 const MyBooking = () => {
+  const [showConfetti, setShowConfetti] = useState(false);
+  // console.log(showConfetti);
+  const { width, height } = useWindowSize();
 
     const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
@@ -25,6 +31,12 @@ const MyBooking = () => {
 
     // const {booking,isLoading,refetch} = useBooking();
 
+    useEffect(() => {
+      if (booking?.length === 4) {
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 4000);
+      }
+    }, [booking]);
     
     const {data: totalCount={},isLoading:loading} = useQuery({
         queryKey: ['bookingCount',user?.email],
@@ -102,6 +114,8 @@ const MyBooking = () => {
 
     return (
         <div className="flex flex-col min-h-screen">
+           {showConfetti && <ReactConfetti width={width}
+      height={height} />}
       <Helmet>
         <title>Shadow Tourist || My Booking</title>
       </Helmet>
@@ -154,7 +168,7 @@ const MyBooking = () => {
         <td ><button className="btn btn-sm bg-green-200">{book.status}</button></td>
         <th>
           <button
-          disabled={book?.status === 'Accepted' || book?.status === 'Rejected'}
+          disabled={book?.status === 'Accepted'|| book?.status === 'Rejected' }
            onClick={()=>handleDelete(book._id)}
           className="btn btn-ghost btn-sm bg-red-500 text-white">Delete</button>
         </th>

@@ -146,7 +146,7 @@ const handleNextPage = () =>{
                     onClick={() =>
                       handleRoleChange(item.email, "guide", "Verified")
                     }
-                    disabled={item.role === 'admin' }
+                    disabled={item.role === 'guide' }
                   >
                     Guide
                   </button>
@@ -157,7 +157,7 @@ const handleNextPage = () =>{
                     onClick={() =>
                       handleRoleChange(item.email, "admin", "Verified")
                     }
-                    disabled={item.role === 'guide' }
+                    disabled={item.role === 'admin' }
                   >
                     Admin
                   </button>

@@ -151,6 +151,10 @@ const CheckoutForm = ({id}) => {
             }}
           />
         </div>
+        {booking?.length > 3 && (
+        <button className="bg-green-600 text-white btn">Apply Discount</button>
+      )}
+       
         <button
           type="submit"
           disabled={!stripe || !clientSecret }
