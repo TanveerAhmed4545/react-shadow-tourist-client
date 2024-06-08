@@ -116,7 +116,7 @@ const MyBooking = () => {
         <th>
           #
         </th>
-        <th>Image</th>
+        <th>Guide Image</th>
         <th>Package Name</th>
         <th>Guide Name</th>
         <th>Email</th>
@@ -130,7 +130,7 @@ const MyBooking = () => {
       {/* row 1 */}
       {
         booking.map((book,idx) => (
-            <tr key={book._id}>
+            <tr key={book._id} className="hover">
         <th>
           {idx+1}
         </th>

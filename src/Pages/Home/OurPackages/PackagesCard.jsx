@@ -33,18 +33,18 @@ const PackagesCard = ({pack,refetch}) => {
             price,
             tripTitle
         }
-        const packData ={
+        // const packData ={
 
             
-            wishlist: true,
+        //     wishlist: true,
            
-        }
+        // }
 
         try{
-            await axiosPublic.patch(`/wishlist-add/${_id}`,packData)
+            // await axiosPublic.patch(`/wishlist-add/${_id}`,packData)
             refetch();
             const wishRes =  await axiosPublic.post('/wishlist-post',wishData);
-            console.log(wishRes.data);
+            // console.log(wishRes.data);
             
         if(wishRes.data.insertedId){
             toast.success("Added to WishList");

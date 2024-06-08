@@ -1,28 +1,56 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
 import loaderAnimation from "../../../assets/loader.json";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyWishList = () => {
     
+  const [currentPage, setCurrentPage] = useState(0);
 
     const {user} = useAuth();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const {data: wishlists=[],isLoading,refetch} = useQuery({
-        queryKey: ['wishlists',user?.email],
+        queryKey: ['wishlists',user?.email,currentPage],
         queryFn: async()=>{
-            const res = await axiosPublic.get(`/wishlist/${user.email}`)
+            const res = await axiosSecure.get(`/wishlist/${user.email}/?page=${currentPage}`)
             return res.data;
         }
     })
 
+    const {data: totalCount={},isLoading:loading} = useQuery({
+      queryKey: ['wishlistCount',user?.email],
+      queryFn: async()=>{
+          const res = await axiosSecure.get(`/wishlistCount/${user.email}`)
+          return res.data;
+      }
+  })
+  const {count} = totalCount;
+  const itemsPerPage = 10;
+ 
+  const numberOfPages = Math.ceil(count/itemsPerPage);
+  const pages = numberOfPages > 0 ? [...Array(numberOfPages).keys()] : [];
+  // console.log(count,itemsPerPage,numberOfPages,pages);
 
-    const handleDelete = async(id,packageId) => {
+  const handlePrevPage = () =>{
+   if(currentPage > 0){
+    setCurrentPage(currentPage - 1);
+   }
+  }
+
+  const handleNextPage = () =>{
+    if(currentPage < pages.length - 1){
+     setCurrentPage(currentPage + 1);
+    }
+   }
+
+
+    const handleDelete = async(id) => {
     
         // console.log(id,packageId);
         Swal.fire({
@@ -37,10 +65,10 @@ const MyWishList = () => {
             if (result.isConfirmed) {
                 try {
                     // Make  cancel the wishlist
-                    await axiosPublic.patch(`/wishlists/${packageId}`);
+                    // await axiosPublic.patch(`/wishlists/${packageId}`);
   
                     // Delete the wishlist 
-                    const { data } = await axiosPublic.delete(`/wishlist-delete/${id}`);
+                    const { data } = await axiosSecure.delete(`/wishlist-delete/${id}`);
                    
   
                     //  Wishlist  deleted
@@ -69,21 +97,24 @@ const MyWishList = () => {
 
     
 
-    if(isLoading) return <div className="flex justify-center items-center ">
+    if(isLoading || loading) return <div className="flex justify-center items-center ">
     <Lottie className="w-1/3" animationData={loaderAnimation} loop={true} />
   </div>
 
 
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
       <Helmet>
         <title>Shadow Tourist || My WishList</title>
       </Helmet>
+      <h2 className="text-center mb-5 text-2xl lg:text-4xl font-extrabold">
+                My Wishlist
+              </h2>
             <div className="overflow-x-auto">
   <table className="table ">
     {/* head */}
     <thead>
-      <tr>
+      <tr className="bg-base-200">
         <th>#</th>
         <th>Tour Type</th>
         <th>Trip Title</th>
@@ -95,15 +126,15 @@ const MyWishList = () => {
     <tbody>
       {/* row 1 */}
       {
-       wishlists.map((wish,idx)=> (<tr key={wish._id} className="bg-base-200">
+       wishlists.map((wish,idx)=> (<tr key={wish._id} className="hover">
        <th>{idx+1}</th>
        <td>{wish.tourType}</td>
        <td>{wish.tripTitle}</td>
        <td>{wish.price} $</td>
        <td>
            <button
-           onClick={()=>handleDelete(wish._id,wish.packageId)}
-           className="btn bg-red-400 text-white">Delete</button>
+           onClick={()=>handleDelete(wish._id)}
+           className="btn bg-red-500 text-white">Delete</button>
        </td>
        <td>
        <Link to={`/package-details/${wish.packageId}`}>
@@ -117,6 +148,24 @@ const MyWishList = () => {
     </tbody>
   </table>
 </div>
+
+<div className="text-center py-5 mt-auto">
+            
+            <button
+            onClick={handlePrevPage}
+            className=" btn btn-md mr-1">«</button>
+            {
+             pages.map((page,idx) => <button
+             onClick={()=> setCurrentPage(page)}
+             key={idx} 
+             className={currentPage === page ? 'btn btn-md btn-active mr-1' : 'btn  btn-md mr-1'}
+             >{page + 1}</button>)
+            }
+            <button
+            onClick={handleNextPage}
+            className=" btn btn-md mr-1">»</button>
+           </div>
+
         </div>
     );
 };
