@@ -7,6 +7,7 @@ import Lottie from "lottie-react";
 import loaderAnimation from "../../../assets/loader.json";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 // eslint-disable-next-line react/prop-types
 const CheckoutForm = ({id}) => {
@@ -24,19 +25,30 @@ const CheckoutForm = ({id}) => {
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState("");
     const [transactionId,setTransactionId] = useState('');
+    const [discountedPrice, setDiscountedPrice] = useState(price);
+
+    const handleDiscount = () =>{
+      // console.log("click");
+      toast.success("Discount Applied")
+      if (price > 0) {
+        const discount = price * 0.2;
+        setDiscountedPrice(price - discount);
+    }
+    }
+
 
     useEffect(()=>{
      
         if(price > 0){
-            axiosSecure.post('/create-payment-intent',{price})
+            axiosSecure.post('/create-payment-intent',{ price: discountedPrice })
         .then(res=> {
-            console.log(res.data.clientSecret);
+            // console.log(res.data.clientSecret);
             setClientSecret(res.data.clientSecret);
         })
         }
     
     
-      },[axiosSecure, price])
+      },[axiosSecure, discountedPrice, price])
 
     const handleSubmit = async (event) => {
         // Block native form submission.
@@ -88,7 +100,7 @@ const CheckoutForm = ({id}) => {
 
             const payment = {
                 email: user?.email,
-                price: price,
+                price: discountedPrice,
                 transactionId: paymentIntent.id,
                 date: new Date(), 
                 bookIds: foundBooking?._id,
@@ -151,9 +163,7 @@ const CheckoutForm = ({id}) => {
             }}
           />
         </div>
-        {booking?.length > 3 && (
-        <button className="bg-green-600 text-white btn">Apply Discount</button>
-      )}
+        
        
         <button
           type="submit"
@@ -165,6 +175,11 @@ const CheckoutForm = ({id}) => {
         <p className="text-red-600 py-3">{error}</p>
         {transactionId && <p className="text-green-500">Your transaction id : {transactionId}</p>}
       </form>
+      {booking?.length > 3 && (
+        <button
+        onClick={handleDiscount}
+        className="bg-green-600 text-white btn">Apply Discount</button>
+      )}
     </div>
         </div>
         </div>

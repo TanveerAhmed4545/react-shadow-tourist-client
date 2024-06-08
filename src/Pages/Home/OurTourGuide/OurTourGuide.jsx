@@ -22,7 +22,7 @@ const OurTourGuide = () => {
                 </div>
       
                 <div className="my-4 text-center">
-      <Link to={'/allGuides'}><button className="btn bg-[#4692ff] text-white">All Guides </button></Link>
+      <Link to={'/allGuides'}><button className="btn bg-[#59A1E5] text-white">All Guides </button></Link>
       
       </div>
 

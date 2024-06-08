@@ -133,23 +133,23 @@ const PackageDetails = () => {
 
       <div className="relative">
         <img
-          src="https://i.ibb.co/7pty44N/luca-calderone-fwva-S5tq69g-unsplash-1.jpg"
+          src="https://i.ibb.co/GQ4Qp0j/man-helmet-sitting-atv-quad-bike-mountains-1.jpg"
           alt="Hero Image"
           className="w-full h-96 object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <h1 className="text-white text-4xl lg:text-6xl font-bold">
+          <h1 className="text-white text-center text-4xl lg:text-6xl font-bold">
             Our Package Details
           </h1>
         </div>
       </div>
       <div className="card rounded-md   hover:shadow-2xl hover:shadow-[#707178]   my-5 lg:my-10 mx-5">
-        <div className="">
+        <div className="md:px-5">
           <figure>
-            <img className=" lg:h-screen rounded-md lg:w-full" src={firstImage} />
+            <img className=" lg:h-screen rounded-md lg:w-full " src={firstImage} />
           </figure>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:px-5 mt-5">
           {allPic && allPic.map((pic, idx) => <img className="h-auto md:h-64 rounded-md  lg:max-h-80 w-full" key={idx} src={pic} />)}
         </div>
         <div className="p-5 lg:p-10 space-y-5 ">
@@ -174,9 +174,9 @@ const PackageDetails = () => {
 
           <p className="text-xl">
             <span className="font-semibold ">
-              Description : {details?.description}{" "}
+              Description : {" "}
             </span>{" "}
-            <span className="text-blue-gray-600"></span>
+            <span className="text-blue-gray-600">{details?.description}</span>
           </p>
           <p className="text-xl">
             <span className="font-semibold ">Tour plan : </span>{" "}
@@ -211,7 +211,7 @@ const PackageDetails = () => {
                 </div>
       
                 <div className="my-4 text-center">
-      <Link to={'/allGuides'}><button className="btn bg-[#4692ff] text-white">See all Guides</button></Link>
+      <Link to={'/allGuides'}><button className="btn bg-[#3e8fdb] text-white">See all Guides</button></Link>
       
       </div>
       </div>

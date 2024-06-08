@@ -7,7 +7,8 @@ import { IoMdEye } from "react-icons/io";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
-
+import signInAnimation from '../../assets/signInAnimation.json';
+import Lottie from "lottie-react";
 
 const Login = () => {
     const [showPassword,setShowPassword] = useState(false);
@@ -66,7 +67,7 @@ const Login = () => {
         <div className="text-center lg:text-left ml-0 lg:ml-10">
           <h1 className="text-4xl font-bold mb-4">Login Now</h1>
           <div className=" max-w-[500px] md:max-w-md lg:max-w-[570px]  ">
-        
+          <Lottie className="w-full" animationData={signInAnimation} loop={true} />
       </div>
     
         </div>
@@ -101,12 +102,12 @@ const Login = () => {
               
             </div>
             <div className="form-control mt-6">
-              <button type="submit" className="btn bg-[#85A1FF] text-white">Login</button>
+              <button type="submit" className="btn bg-[#1f55cbb5] text-white">Login</button>
             </div>
           </form>
           <SocialLogin></SocialLogin>
           <div className="text-center py-5">
-         <p>Do not have an account ? <Link className="text-black font-bold" to='/register'>Register</Link></p>
+         <p>Do not have an account ? <Link className="text-[#2563EB] font-bold" to='/register'>Register</Link></p>
          </div>
         </div>
       </div>

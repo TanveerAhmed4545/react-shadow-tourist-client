@@ -25,7 +25,7 @@ const TourGuideCard = ({guide}) => {
           {education}
         </p>
         <Link to={`/guide-Profile/${_id}`}>
-        <button className="btn my-2 w-full text-white bg-[#4692ff]">View Profile</button>
+        <button className="btn my-2 w-full text-white bg-[#59A1E5]">View Profile</button>
 
         </Link>
         

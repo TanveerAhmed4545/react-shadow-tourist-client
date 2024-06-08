@@ -35,7 +35,7 @@ const OurStory = () => {
 
       <div className="text-center my-4">
         <Link to={'/allStories'}>
-        <button className="btn bg-blue-500 text-white">All Stories</button>
+        <button className="btn bg-[#59A1E5] text-white">All Stories</button>
         </Link>
         
       </div>

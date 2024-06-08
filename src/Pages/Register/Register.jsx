@@ -9,7 +9,8 @@ import { IoMdEye } from "react-icons/io";
 import { Helmet } from "react-helmet-async";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
-
+import signUpAnimation from '../../assets/signUpAnimation.json';
+import Lottie from "lottie-react";
 
 const Register = () => {
      // show password
@@ -85,7 +86,7 @@ const Register = () => {
         <div className="text-center lg:text-left lg:ml-10">
           <h1 className="text-5xl font-bold ">Register Now</h1>
           <div className=" max-w-[600px] md:max-w-md lg:max-w-[600px]">
-          
+          <Lottie className="w-full " animationData={signUpAnimation} loop={true} />
           </div>
         </div>
         <div className="card  shrink-0 w-full max-w-md shadow-2xl bg-base-100">
@@ -139,7 +140,7 @@ const Register = () => {
           </form>
           <SocialLogin></SocialLogin>
           <div className="text-center py-5">
-         <p>Already have an account ? <Link className="text-[#85A1FF] font-bold" to='/login'>Login</Link></p>
+         <p>Already have an account ? <Link className="text-[#2563EB] font-bold" to='/login'>Login</Link></p>
          </div>
         </div>
       </div>
