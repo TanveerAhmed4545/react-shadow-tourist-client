@@ -97,7 +97,7 @@ const StoryDetails = () => {
                 </button>
               </NavLink>
             ) : (
-                <FacebookShareButton url={'https://react-haven-hearth.web.app/'} >
+                <FacebookShareButton url={`https://shadow-tourist.web.app/storyDetails/${details._id}`} >
                 <button className="bg-blue-400 btn text-white">Share on Facebook</button>  
                </FacebookShareButton>
             )}
