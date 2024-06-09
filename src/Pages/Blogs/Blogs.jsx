@@ -44,7 +44,7 @@ const Blogs = () => {
         </div>
       </div>
 
-      <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 my-5 px-6">
+      <div className="grid  grid-cols-1 md:grid-cols-2  gap-5 my-5 px-6">
         {blogs.map((item) => (
           <BlogCard key={item._id} item={item}></BlogCard>
         ))}

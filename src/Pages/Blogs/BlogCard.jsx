@@ -27,7 +27,7 @@ const BlogCard = ({item}) => {
         
         <div className="mt-auto">
        <p className="text-sm dark:text-gray-600 ">
-          {blog}....
+          {blog}
         </p>
         </div>
      

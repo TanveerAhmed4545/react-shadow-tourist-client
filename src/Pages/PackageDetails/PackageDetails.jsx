@@ -146,11 +146,11 @@ const PackageDetails = () => {
       <div className="card rounded-md   hover:shadow-2xl hover:shadow-[#707178]   my-5 lg:my-10 mx-5">
         <div className="md:px-5">
           <figure>
-            <img className=" lg:h-screen rounded-md lg:w-full " src={firstImage} />
+            <img className=" lg:h-screen object-cover object-center rounded-md lg:w-full " src={firstImage} />
           </figure>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:px-5 mt-5">
-          {allPic && allPic.map((pic, idx) => <img className="h-auto md:h-64 rounded-md  lg:max-h-80 w-full" key={idx} src={pic} />)}
+          {allPic && allPic.map((pic, idx) => <img className="h-auto object-cover object-center md:h-64 rounded-md  lg:max-h-80 w-full" key={idx} src={pic} />)}
         </div>
         <div className="p-5 lg:p-10 space-y-5 ">
           <p className="text-xl font-semibold">
@@ -204,7 +204,7 @@ const PackageDetails = () => {
        {/* all tour guides */}
       <div className="mx-5">
         <h2 className="text-center text-2xl font-semibold text-[#4692FF]">See Our all guides Profile</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 px-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 px-0 lg:px-6">
                       {
                         guides.slice(0,3).map(guide => <TourGuideCard key={guide._id} guide={guide} ></TourGuideCard>)
                        }  
@@ -218,7 +218,7 @@ const PackageDetails = () => {
 
       {/* form */}
 
-      <div className="p-5 lg:p-10 bg-gray-100 rounded-lg shadow-lg">
+      <div className="p-5 lg:p-10 m-5 bg-gray-100 rounded-lg shadow-lg">
         <h2 className="text-2xl md:text-4xl  font-bold text-center text-blue-600 mb-5">
           Book Now{" "}
         </h2>

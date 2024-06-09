@@ -124,7 +124,7 @@ const TourGuideProfile = () => {
       <div className=" flex gap-5 lg:flex-row flex-col rounded-md lg:card-side bg-base-100 my-5 mx-5 ">
         <div className="lg:basis-2/5">
         <figure>
-          <img src={profilePicture} alt="Album" className="rounded-md w-full md:w-[50vw] md:mx-auto lg:w-full h-[70vh] lg:h-[70vh]" />
+          <img src={profilePicture} alt="Album" className="rounded-md object-cover object-center w-full md:w-[50vw] md:mx-auto lg:w-full h-[70vh] lg:h-[70vh]" />
         </figure>
         </div>
         <div className=" text-center lg:text-left lg:basis-3/5  md:py-5 space-y-5 ">

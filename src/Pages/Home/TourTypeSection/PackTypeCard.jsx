@@ -10,7 +10,7 @@ const PackTypeCard = ({type}) => {
         <div className="relative">
           <figure>
             <img
-              className="h-auto md:h-44 lg:h-72 w-full  rounded-md"
+              className="h-auto md:h-44 lg:h-72 w-full object-cover object-center  rounded-md"
               src={img}
             />
           </figure>

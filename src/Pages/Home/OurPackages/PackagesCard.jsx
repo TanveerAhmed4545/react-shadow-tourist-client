@@ -63,7 +63,7 @@ const PackagesCard = ({pack,refetch}) => {
         <div className="relative">
           <figure>
             <img
-              className="h-auto md:h-44 lg:h-52 w-full  rounded-md"
+              className="h-auto md:h-44 lg:h-52 w-full object-cover object-center  rounded-md"
               src={firstImage}
             />
           </figure>
