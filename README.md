@@ -16,5 +16,5 @@
 - 📝  Things like React Sweet Alert, React Router, React Icons,  Jwt token,  sweepier, imgbb, stripe payment system,  Framer Motion, React Vite, Firebase, Express, MongoDB have also been used in this project.
 - 📝 Selected category is tour guide related .
 
-# Admin email : hero@gmail.com
-# Admin password : Ta123456
+## Admin email : hero@gmail.com
+## Admin password : Ta123456
