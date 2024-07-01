@@ -2,6 +2,13 @@
 
 
 ## Live Server: https://shadow-tourist.web.app/
+## Server site:https://github.com/TanveerAhmed4545/react-shadow-tourist-server
+
+## About
+Shadow Tourist is a meticulously designed tour guide website created with React, React Router, and Tailwind CSS, featuring a user-friendly layout and original design.
+
+##  Features
+
  
 - 📝 This is a tour guide related website.
 - 📝 This website design create by myself.
