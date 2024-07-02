@@ -13,8 +13,8 @@ React js, MongoDB, Express, Firebase, JWT, Axios, React Query, React Hook Form, 
 - 📝 This is a tour guide-related website.
 - 📝 This website design was created by myself.
 - 📝 An admin dashboard is available to manage tourists, guides, and admins.
-- 📝 The site supports user authentication and uses MongoDB for data management.
-- 📝 The website integrates Stripe for secure payment processing.
+- 📝 This site supports user authentication and uses MongoDB for data management.
+- 📝 This website integrates Stripe for secure payment processing.
 - 📝 This website is built with React library and also React router.
 - 📝 This website is built with a tailwind CSS library.
 - 📝 This website mainly has 3 pages. Home/ blogs / about us/ contact us/community  and also login and register.
