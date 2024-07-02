@@ -6,22 +6,22 @@
 
 ## About
 Shadow Tourist is a meticulously designed tour guide website created with React, React Router, and Tailwind CSS, featuring a user-friendly layout and original design.
+## Technologies: 
+React js, MongoDB, Express, Firebase, JWT, Axios, React Query, React Hook Form, Tailwind, Stripe Payment
 
 ##  Features
-
- 
-- 📝 This is a tour guide related website.
-- 📝 This website design create by myself.
+- 📝 This is a tour guide-related website.
+- 📝 This website design was created by myself.
 - 📝 This website is built with React library and also React router.
-- 📝 This website is built with tailwind css library .
+- 📝 This website is built with a tailwind Css library.
 - 📝 This website mainly has 3 pages. Home/ blogs / about us/ contact us/community  and also login and register.
-- 📝 The Home Page contain Navbar,Banner, Tourism and Travel Guide Section, Tour Type Section , Tourist Story Section and Footer.
-- 📝  Authentication functionality has included in this website.
-- 📝 And mongodb collection and data has been created by me and that data has been used for this Website.
+- 📝 The Home Page contains the Navbar, Banner, Tourism and Travel Guide Section, Tour Type Section, Tourist Story Section and Footer.
+- 📝  Authentication functionality is included in this website.
+- 📝 MongoDB collection and data have been created by me and that data has been used for this Website.
 - 📝 Also use daisyUi .
-- 📝  And There Have also Dashboard, In the Dashboard would show  tourist, guide and admin.
-- 📝  Things like React Sweet Alert, React Router, React Icons,  Jwt token,  sweepier, imgbb, stripe payment system,  Framer Motion, React Vite, Firebase, Express, MongoDB have also been used in this project.
-- 📝 Selected category is tour guide related .
+- 📝  And There Is also a Dashboard, In the Dashboard, it would show  tourists, guides and admin.
+- 📝  Things like React Sweet Alert, React Router, React Icons,  Jwt token,  sweeper, Imgbb, stripe payment system,  Framer Motion, React Vite, Firebase, Express, and MongoDB have also been used in this project.
+- 📝 Selected category is tour guide related.
 
-## Admin email : hero@gmail.com
-## Admin password : Ta123456
+## Admin email: hero@gmail.com
+## Admin password: Ta123456
